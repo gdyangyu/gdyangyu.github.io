@@ -1,0 +1,759 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="秋水逍遥" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="软件开发，尤其是大型软件开发是非常复杂的，涉及非常多的组件元素，需要作出大大小小的各种决策。软件开发的根本矛盾是不断增长的系统规模和复杂性与开发人员有限的大脑容量和处理速度之间的矛盾。:)
+为了了解软件开发的全貌，让我们上升到3万米的高空，对软件开发内容做一个全景式的鸟瞰，对我们要了解和实现的东西进行一个高层的切分。
+两个维度范围维度软件开发的主要目的是为其他行业的业务问题提供技术解决方案，例如为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件开发大图景：两个维度，四个象限">
+<meta property="og:url" content="http://www.yyang.io/2015/12/31/Big-Picture-of-Software-Development/index.html">
+<meta property="og:site_name" content="秋水逍遥">
+<meta property="og:description" content="软件开发，尤其是大型软件开发是非常复杂的，涉及非常多的组件元素，需要作出大大小小的各种决策。软件开发的根本矛盾是不断增长的系统规模和复杂性与开发人员有限的大脑容量和处理速度之间的矛盾。:)
+为了了解软件开发的全貌，让我们上升到3万米的高空，对软件开发内容做一个全景式的鸟瞰，对我们要了解和实现的东西进行一个高层的切分。
+两个维度范围维度软件开发的主要目的是为其他行业的业务问题提供技术解决方案，例如为">
+<meta property="og:updated_time" content="2016-04-25T09:40:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件开发大图景：两个维度，四个象限">
+<meta name="twitter:description" content="软件开发，尤其是大型软件开发是非常复杂的，涉及非常多的组件元素，需要作出大大小小的各种决策。软件开发的根本矛盾是不断增长的系统规模和复杂性与开发人员有限的大脑容量和处理速度之间的矛盾。:)
+为了了解软件开发的全貌，让我们上升到3万米的高空，对软件开发内容做一个全景式的鸟瞰，对我们要了解和实现的东西进行一个高层的切分。
+两个维度范围维度软件开发的主要目的是为其他行业的业务问题提供技术解决方案，例如为">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 软件开发大图景：两个维度，四个象限 | 秋水逍遥 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3477a850f15a644e6840ea01c2aba8f9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">秋水逍遥</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一蓑烟雨任平生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'k1wFgerryKPm2qkNfPXm','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                软件开发大图景：两个维度，四个象限
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-31T15:47:19+08:00" content="2015-12-31">
+              2015-12-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/分析设计/" itemprop="url" rel="index">
+                    <span itemprop="name">-分析设计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/31/Big-Picture-of-Software-Development/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/31/Big-Picture-of-Software-Development/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>软件开发，尤其是大型软件开发是非常复杂的，涉及非常多的组件元素，需要作出大大小小的各种决策。软件开发的根本矛盾是不断增长的系统规模和复杂性与开发人员有限的大脑容量和处理速度之间的矛盾。:)</p>
+<p>为了了解软件开发的全貌，让我们上升到3万米的高空，对软件开发内容做一个全景式的鸟瞰，对我们要了解和实现的东西进行一个高层的切分。</p>
+<h2 id="两个维度"><a href="#两个维度" class="headerlink" title="两个维度"></a>两个维度</h2><h3 id="范围维度"><a href="#范围维度" class="headerlink" title="范围维度"></a>范围维度</h3><p>软件开发的主要目的是为其他行业的业务问题提供技术解决方案，例如为航空公司的飞机实现自动导航，为汽车公司的汽车生产进行产销平衡，等等。从范围上看，软件开发所覆盖的范围可以划分为两个领域：我们要开发的软件系统属于解决方案域，而软件系统来自于和最终服务于的业务领域（例如飞机导航、汽车生产等等）属于问题域。问题域存在问题，软件系统为问题域的问题提供技术上的解决方案。</p>
+<p>这就是我们看待软件开发的第一个维度：范围维度。我们把软件开发的范围划分为问题域和解决方案域。处于问题域中的时候，我们的任务是认识世界，即了解在没有软件系统存在的情况下，现实业务领域是如何运作的；而处于解决方案域中的时候，我们是在改造世界，即通过设计和实现软件系统帮助业务领域运作得更好（更大、更快、更赚钱、更省钱、更透明、更灵活……）。</p>
+<p>在软件开发的术语中，“业务”、“领域”是问题域的同义词，“系统”是解决方案域的同义词（“系统”是“软件系统”的简称）。因此，“业务”分析师、”业务”规则、“业务”用例模型、“领域”模型、“领域”专家聚焦于问题域，而“系统”分析师、“系统”用例模型聚焦于解决方案域。</p>
+<h3 id="内-外维度"><a href="#内-外维度" class="headerlink" title="内/外维度"></a>内/外维度</h3><p>除了范围维度之外，我们还可以从另外的维度看待软件开发，其中一个非常有用的维度是内/外维度。从内/外视角看，系统在我们面前可以划分为外部视图和内部视图。外部视图是系统的黑盒视图，我们看不到它的内部组成和运作机制，只能够看到它呈现给外界的功能；而内部视图是系统的白盒视图，揭示了系统的内部组成和运作机制。</p>
+<h2 id="四个象限"><a href="#四个象限" class="headerlink" title="四个象限"></a>四个象限</h2><p>范围维度和内外维度两者是正交的，你可以把它们看成两条相互垂直相交的数轴——X轴和Y轴，它们把软件开发问题空间分割为四个区域——用数学的术语表示就是四个象限。分别说明如下：</p>
+<h3 id="问题域的外部视图——业务用例模型"><a href="#问题域的外部视图——业务用例模型" class="headerlink" title="问题域的外部视图——业务用例模型"></a>问题域的外部视图——业务用例模型</h3><p>这个象限从外部视角看待问题域，分析探究业务系统实现了哪些功能，对它的用户提供了哪些业务价值？每一项系统功能体现为一个业务用例。例如银行储蓄业务为储户提供存款、取款、转账和提供对账单等等服务，每一项服务就是一个业务用例。</p>
+<p>开发业务用例模型不是软件开发的必须步骤，但本人强烈建议不要忽略这一方面的工作。一方面，开发软件系统的目标就是实现和改进这些业务用例（或业务用例中的某些环节），业务用例为软件开发设定了目标和验收标准；另一方面，通过业务用例分析可以更有效地支持领域建模和系统用例建模，有助于发现领域对象和机制，防止系统用例遗漏或疏失。</p>
+<h3 id="问题域的内部视图——领域模型"><a href="#问题域的内部视图——领域模型" class="headerlink" title="问题域的内部视图——领域模型"></a>问题域的内部视图——领域模型</h3><p>这个象限从内部视角看待问题域，研究业务领域中固有的组成、结构、行为、机制和规则等等。这方面的工作称为“领域建模”，其产物称为“领域模型”。我们要重点分析研究的是：业务领域中有哪些关键的概念实体（例如银行储蓄业务中的账户、对账单、信用卡、借记卡等等）、各种概念实体之间的关系（关联、泛化、组合、聚合等等），以及它们之间如何交互以实现业务用例模型中规定的各项功能等等。</p>
+<p>领域建模是软件开发中最核心的活动，领域模型是软件开发中最有价值的工件。领域建模的质量在很大程度上决定了软件的成败。如果由于对问题域分析理解的偏差，产出错误的领域模型，那么，无论多么先进的技术工具、多么高超的技术手段，都无法挽救软件的失败命运。</p>
+<h3 id="解决方案域的外部视图——系统用例模型"><a href="#解决方案域的外部视图——系统用例模型" class="headerlink" title="解决方案域的外部视图——系统用例模型"></a>解决方案域的外部视图——系统用例模型</h3><p>这个象限从外部视角看待要构建的软件系统，定义了系统所要实现的所有业务功能，即软件系统能够向它的用户提供的业务价值。这方面的工作称为需求分析（通常只包含功能需求），其产物称为“系统用例模型”，简称为“用例模型”（另一个名字是“功能规格说明书”），每一个系统用例描述一项对用户有价值的系统功能。</p>
+<p>系统用例模型定义了软件系统的功能外观，即软件系统能够“干什么”的方面。系统用例模型沟通了两个领域，它定义了要开发的软件系统（解决方案域）必须实现的业务功能（问题域）。</p>
+<h3 id="解决方案域的内部视图——设计模型"><a href="#解决方案域的内部视图——设计模型" class="headerlink" title="解决方案域的内部视图——设计模型"></a>解决方案域的内部视图——设计模型</h3><p>这个象限从内部视角看待要构建的软件系统，即通过哪些技术组件和怎样的交互手段实现系统用例模型中定义的业务功能？</p>
+<p>领域模型中的对象代表问题域中的概念（如信用卡、账户等等），而设计模型中的对象代表软件实体（如记录集、DAO等等）。正如同业务用例模型会映射到系统用例模型一样（通常一个系统用例实现一个业务用例，或者业务用例中的一个步骤），领域模型中的对象也可以而且应该映射到设计模型中的相应软件对象之上，这意味着设计模型中也应该有信用卡、账户这样的对象，它们和领域模型中的同名对象一样，拥有相同或类似的属性和行为，这就是《领域驱动设计》一书的主张——使用同一种语言（业务语言）和基于同一个模型（领域模型）进行分析和设计，开发软件应用。</p>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>解决方案域以问题域为出发点和依归，即问题决定解决方案（这是理所当然的，不是吗？如果我想求解3乘2这个问题，你却提供3加2这个解决方案，当然是错误的）。开发人员的一个典型的错误是把关注点集中在解决方案域的实现技术上，却忽视了问题分析和问题定义，因此在实现过程中失焦，刻鹄成鹜，画虎类犬。</p>
+<p>内部视图“动于内”，外部视图“形诸外”。系统的外部视图定义了外部可见的行为，而内部视图揭示了系统内部的组织结构和运行机制，系统通过内部视图中的结构和机制实现外部视图中向外界呈现的行为。外部视图表达What，即“做什么”，内部视图表达How，即“怎么做”。</p>
+<p>设计模型从两方面获得指导：从系统用例模型中获得“What”方面的指导，确定需要实现哪些功能；以及从领域模型中获得“How”方面的指导，确定如何实现那些功能。在分层架构中，用例模型和领域模型分别映射到系统的应用层和领域层；在Clean架构（Robert C. Martin，<a href="http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external">Clean架构</a>）中，用例模型和领域模型分别映射到系统的用例层和实体层。</p>
+<h2 id="时刻记住你当前所处的位置"><a href="#时刻记住你当前所处的位置" class="headerlink" title="时刻记住你当前所处的位置"></a>时刻记住你当前所处的位置</h2><p>在软件开发过程中，请时刻记住你当前处于哪一个象限。我们应该严格划分业务（问题域）和技术（解决方案域），意图（外部视角）和实现（内部视角），要防止业务逻辑渗漏到技术组件中（例如在表示层或持久层中维护取款业务规则），也要防止技术逻辑渗漏到业务逻辑中（例如领域层代码依赖Spring或Hibernate，或使用RabbitMQ进行消息通信），还要防止在只应该表示意图的地方直接提供实现方案（例如在应用层中实现业务逻辑）。</p>
+<p>当处于问题域中的时候，我们的任务是“发现”，是“认识世界”；当处于解决方案域的时候，我们的任务是“发明”，是“改造世界”。当处于外部视图中的时候，我们是在描述系统的行为和功能；当处于内部视图中的时候，我们是在描述系统的内部组成、结构和实现机制。具体来说：</p>
+<ul>
+<li>在业务用例模型中，我们识别和建模业务意图和业务行为；</li>
+<li>在领域模型中，我们识别和建模业务实体和业务实现机制；</li>
+<li>在系统用例模型中，我们定义待开发的软件系统要实现的行为和功能；</li>
+<li>在设计模型中，我们定义待开发的软件系统的内部结构和行为实现机制。</li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/31/DDD-and-Layered-Architecture/" rel="prev" title="DDD与分层架构">
+                DDD与分层架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/31/Big-Picture-of-Software-Development/"
+           data-title="软件开发大图景：两个维度，四个象限" data-url="http://www.yyang.io/2015/12/31/Big-Picture-of-Software-Development/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="杨宇" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">杨宇</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">杨宇的个人网站.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#两个维度"><span class="nav-number">1.</span> <span class="nav-text">两个维度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#范围维度"><span class="nav-number">1.1.</span> <span class="nav-text">范围维度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内-外维度"><span class="nav-number">1.2.</span> <span class="nav-text">内/外维度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个象限"><span class="nav-number">2.</span> <span class="nav-text">四个象限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题域的外部视图——业务用例模型"><span class="nav-number">2.1.</span> <span class="nav-text">问题域的外部视图——业务用例模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题域的内部视图——领域模型"><span class="nav-number">2.2.</span> <span class="nav-text">问题域的内部视图——领域模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案域的外部视图——系统用例模型"><span class="nav-number">2.3.</span> <span class="nav-text">解决方案域的外部视图——系统用例模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案域的内部视图——设计模型"><span class="nav-number">2.4.</span> <span class="nav-text">解决方案域的内部视图——设计模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系"><span class="nav-number">3.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时刻记住你当前所处的位置"><span class="nav-number">4.</span> <span class="nav-text">时刻记住你当前所处的位置</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨宇</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<br/>
+<div class="theme-info">
+  <a href="http://www.miitbeian.gov.cn/" rel="xternal nofollow" target="_blank">
+    粤ICP备15089235号-1
+  </a>
+</div>
+
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+     
+  	  <script type="text/javascript">
+  		var duoshuo_user_ID = 6234364317794305000
+      var duoshuo_admin_nickname="yyang"
+  	  </script>
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
