@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/index.html">
 <meta property="og:site_name" content="秋水逍遥">
 <meta property="og:description" content="本文以按颜色、大小、产地筛选一堆苹果这样一个情景为例，比较非参数化、数据参数化和通过函数式编程实现行为参数化，说明函数式编程的优势。">
-<meta property="og:updated_time" content="2016-04-27T07:07:31.000Z">
+<meta property="og:updated_time" content="2016-04-27T07:10:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数式编程与行为参数化">
 <meta name="twitter:description" content="本文以按颜色、大小、产地筛选一堆苹果这样一个情景为例，比较非参数化、数据参数化和通过函数式编程实现行为参数化，说明函数式编程的优势。">
@@ -377,7 +377,7 @@
 <ol>
 <li>我们只会根据根据苹果本身的属性筛选苹果（实际上，我们可能在夏天选择红苹果，冬天选择绿苹果，筛选条件“时间”并不是苹果本身的属性）；</li>
 <li>苹果的属性只有三种：颜色、大小、产地（实际上，还有很多其他的属性可能成为筛选条件，例如品种，是否有机）；</li>
-<li>每种属性的取值范围都是已经的，已经覆盖了所有可能的值，例如产地只有陕西、山东、甘肃和进口（实际上，别的省份也种苹果，也许“进口”太笼统，需要具体化为每个国家）。</li>
+<li>每种属性的取值范围都是已知的，覆盖了所有可能的值，例如产地只有陕西、山东、甘肃和进口（实际上，别的省份也种苹果，也许“进口”太笼统，需要具体化为每个国家）。</li>
 </ol>
 <p>因此：</p>
 <pre><code>为了得到一个通用的设计，我们不应该对筛选条件做任何的假设和限定，应该由代码的使用者来定义筛选条件：代码的使用者把筛选方法交给我，我据此给他选出符合条件的苹果。

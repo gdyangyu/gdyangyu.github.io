@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yyang.io/"/>
-  <updated>2016-04-27T07:07:31.000Z</updated>
+  <updated>2016-04-27T07:10:50.000Z</updated>
   <id>http://www.yyang.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/"/>
     <id>http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/</id>
     <published>2016-04-25T10:08:31.000Z</published>
-    <updated>2016-04-27T07:07:31.000Z</updated>
+    <updated>2016-04-27T07:10:50.000Z</updated>
     
     <content type="html">&lt;p&gt;废话少说，从实例开始。我们的实例就是从一堆苹果中选出符合某种条件的苹果。&lt;/p&gt;
 &lt;p&gt;我们知道，苹果有很多属性，都可以用来作为筛选的标准。简单起见，我们只选择三个属性：颜色，大小、产地。属性的取值范围是：&lt;/p&gt;
@@ -99,7 +99,7 @@
 &lt;ol&gt;
 &lt;li&gt;我们只会根据根据苹果本身的属性筛选苹果（实际上，我们可能在夏天选择红苹果，冬天选择绿苹果，筛选条件“时间”并不是苹果本身的属性）；&lt;/li&gt;
 &lt;li&gt;苹果的属性只有三种：颜色、大小、产地（实际上，还有很多其他的属性可能成为筛选条件，例如品种，是否有机）；&lt;/li&gt;
-&lt;li&gt;每种属性的取值范围都是已经的，已经覆盖了所有可能的值，例如产地只有陕西、山东、甘肃和进口（实际上，别的省份也种苹果，也许“进口”太笼统，需要具体化为每个国家）。&lt;/li&gt;
+&lt;li&gt;每种属性的取值范围都是已知的，覆盖了所有可能的值，例如产地只有陕西、山东、甘肃和进口（实际上，别的省份也种苹果，也许“进口”太笼统，需要具体化为每个国家）。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;因此：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;为了得到一个通用的设计，我们不应该对筛选条件做任何的假设和限定，应该由代码的使用者来定义筛选条件：代码的使用者把筛选方法交给我，我据此给他选出符合条件的苹果。
