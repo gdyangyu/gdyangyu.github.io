@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/index.html">
 <meta property="og:site_name" content="秋水逍遥">
 <meta property="og:description" content="本文以按颜色、大小、产地筛选一堆苹果这样一个情景为例，比较非参数化、数据参数化和通过函数式编程实现行为参数化，说明函数式编程的优势。">
-<meta property="og:updated_time" content="2016-04-27T06:48:47.000Z">
+<meta property="og:updated_time" content="2016-04-27T06:54:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数式编程与行为参数化">
 <meta name="twitter:description" content="本文以按颜色、大小、产地筛选一堆苹果这样一个情景为例，比较非参数化、数据参数化和通过函数式编程实现行为参数化，说明函数式编程的优势。">
@@ -375,8 +375,8 @@
 </code></pre><p>谁来定义怎样叫做“符合条件”？</p>
 <p>我们实际上陷入了“职责错配”的困境。我们假设我们（代码库的实现者）需要/能够知道所有筛选条件，并针对这些筛选条件给出了所有的筛选实现。我们做了下面这样的不可靠的假设：</p>
 <ol>
-<li>我们只会根据根据苹果本身的属性筛选苹果（实际上，我们可能在夏天选择红苹果，冬天选择绿苹果，筛选条件“时间”并不是苹果本身的属性）</li>
-<li>苹果的属性只有三种：颜色、大小、产地（实际上，还有很多其他的属性可能成为筛选条件，例如品种，是否有机）</li>
+<li>我们只会根据根据苹果本身的属性筛选苹果（实际上，我们可能在夏天选择红苹果，冬天选择绿苹果，筛选条件“时间”并不是苹果本身的属性）；</li>
+<li>苹果的属性只有三种：颜色、大小、产地（实际上，还有很多其他的属性可能成为筛选条件，例如品种，是否有机）；</li>
 <li>每种属性的取值范围都是已经的，已经覆盖了所有可能的值，例如产地只有陕西、山东、甘肃和进口（实际上，别的省份也种苹果，也许“进口”太笼统，需要具体化为每个国家）。</li>
 </ol>
 <p>因此：</p>
@@ -385,7 +385,7 @@
 <p>如果你学习过设计模式，你就会想到，“策略模式”是实现行为参数化的绝佳方法，其实现方式可归纳为：</p>
 <ol>
 <li>定义一个策略接口，代表筛选的方法；</li>
-<li>筛选苹果的代码通过参数接收这个策略接口的实现。在筛选时，将每一个苹果提交给它去判断是否满足条件。</li>
+<li>筛选苹果的代码通过参数接收这个策略接口的实现。在筛选时，将每一个苹果提交给它去判断是否满足条件；</li>
 <li>代码的使用者负责提供策略接口的实现类，代表自己的筛选方法。</li>
 </ol>
 <p><strong>定义策略接口</strong></p>
@@ -428,13 +428,13 @@
 </code></pre><p>就像一台发动机，在被作为货物运输时是名词——被处理的被动对象，而在加电运转时是动词——一个能动的机械。运输时我们关注的是它的属性（重量、体积），运行时我们关注的是它的行为。</p>
 <h2 id="进一步泛化"><a href="#进一步泛化" class="headerlink" title="进一步泛化"></a>进一步泛化</h2><p>目前为止，一切都很优雅：通过行为参数化，我们得到了简单性和灵活性的高度统一。我们通过逐步提高抽象的层级，使得筛选苹果的方法越来越通用：</p>
 <ol>
-<li>一开始，我们直接关注属性值（数学隐喻是坐标值，例如红，绿，轻，重），针对属性值进行筛选</li>
-<li>通过数据参数化，我们将抽象层级提高到属性（数学隐喻是维度，例如颜色、重量）一级，针对属性进行筛选，将提供属性值的责任转移给代码库的使用者</li>
+<li>一开始，我们直接关注属性值（数学隐喻是坐标值，例如红，绿，轻，重），针对属性值进行筛选；</li>
+<li>通过数据参数化，我们将抽象层级提高到属性（数学隐喻是维度，例如颜色、重量）一级，针对属性进行筛选，将提供属性值的责任转移给代码库的使用者；</li>
 <li>通过行为参数化，我们完全抛弃“只能根据苹果自身的属性筛选苹果”这样一个不合理的假设，将定义筛选条件的责任完全转移给代码库的使用者。</li>
 </ol>
 <p>通过“抽象”和“职责分离”，我们得到了一个通用的解决方案。</p>
 <p>但是，<strong>还不够通用！</strong></p>
-<p>我们的库代码，还被绑定在“苹果”的领域概念上。</p>
+<p>我们的库代码，还被绑定在“苹果”这个特定领域的概念上。</p>
 <p>我们的AppleSelector类是Apple相关的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppleSelectorBehaviorParameterized</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Set&lt;Apple&gt; apples = <span class="keyword">new</span> HashSet&lt;Apple&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">load</span><span class="params">(Apple... apples)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.apples = <span class="keyword">new</span> HashSet&lt;Apple&gt;(Arrays.asList(apples));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;Apple&gt; <span class="title">selectApple</span><span class="params">(AppleSelectMethod method)</span> </span>&#123;</span><br><span class="line">        Set&lt;Apple&gt; results = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (Apple apple : apples) &#123;</span><br><span class="line">            <span class="keyword">if</span> (method.isSatisfiedBy(apple)) &#123;</span><br><span class="line">                results.add(apple);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> results;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们的策略接口AppleSelectMethod也是Apple相关的：</p>
@@ -452,7 +452,7 @@
 </code></pre><p>我们从</p>
 <pre><code>从一堆苹果中筛选出红色的大苹果
 </code></pre><p>这样一个非常领域特定的问题得出了</p>
-<pre><code>从一批事物中根据某种条件筛选出一个子集
+<pre><code>从一个集合中根据某种条件筛选出一个子集
 </code></pre><p>这样一个通用的解决方案。</p>
 <p>至此，这项解决方案可以脱离具体项目，提升为企业级通用类库的一部分，在多个项目内重用。</p>
 <h2 id="Java-8-Lambda和Stream"><a href="#Java-8-Lambda和Stream" class="headerlink" title="Java 8, Lambda和Stream"></a>Java 8, Lambda和Stream</h2><p>事实上，由于<strong>从一批事物中根据某种条件筛选出一个子集</strong>是如此通用的一个功能，Java 8直接在JDK的层面上实现了，成为世界级通用方法。</p>
