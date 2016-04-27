@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yyang.io/"/>
-  <updated>2016-04-27T07:57:25.000Z</updated>
+  <updated>2016-04-27T08:12:40.000Z</updated>
   <id>http://www.yyang.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/"/>
     <id>http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/</id>
     <published>2016-04-25T10:08:31.000Z</published>
-    <updated>2016-04-27T07:57:25.000Z</updated>
+    <updated>2016-04-27T08:12:40.000Z</updated>
     
     <content type="html">&lt;p&gt;废话少说，从实例开始。我们的实例就是从一堆苹果中选出符合某种条件的苹果。&lt;/p&gt;
 &lt;p&gt;我们知道，苹果有很多属性，都可以用来作为筛选的标准。简单起见，我们只选择三个属性：颜色，大小、产地。属性的取值范围是：&lt;/p&gt;
@@ -199,7 +199,8 @@
 &lt;p&gt;实际上是Predicate的test()方法的即时实现，作为stream的filter()方法的行为参数。-&amp;gt;符号左边的部分apple是test()方法的参数，右边部分是test()的方法体。&lt;/p&gt;
 &lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h2&gt;&lt;p&gt;以一句正确的废话作总结吧：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;磨练你的抽象能力，尽可能达成最泛化的设计。
-&lt;/code&gt;&lt;/pre&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;范例项目可以从[&lt;a href=&quot;https://git.oschina.net/yyang/fp-and-bp.git]下载。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://git.oschina.net/yyang/fp-and-bp.git]下载。&lt;/a&gt;&lt;/p&gt;
+</content>
     
     <summary type="html">
     
