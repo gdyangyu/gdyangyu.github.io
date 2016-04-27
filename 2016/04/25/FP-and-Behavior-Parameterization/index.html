@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/index.html">
 <meta property="og:site_name" content="秋水逍遥">
 <meta property="og:description" content="本文以按颜色、大小、产地筛选一堆苹果这样一个情景为例，比较非参数化、数据参数化和通过函数式编程实现行为参数化，说明函数式编程的优势。">
-<meta property="og:updated_time" content="2016-04-27T06:59:38.000Z">
+<meta property="og:updated_time" content="2016-04-27T07:02:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数式编程与行为参数化">
 <meta name="twitter:description" content="本文以按颜色、大小、产地筛选一堆苹果这样一个情景为例，比较非参数化、数据参数化和通过函数式编程实现行为参数化，说明函数式编程的优势。">
@@ -321,7 +321,7 @@
 <p>还有各种组合选择，例如：</p>
 <p>（3）选择进口的红苹果：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;Apple&gt; <span class="title">selectRedAndAbroad</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Set&lt;Apple&gt; results = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (Apple apple : apples) &#123;</span><br><span class="line">        <span class="keyword">if</span> (apple.getArea() == Area.ABROAD &amp;&amp; apple.getArea() == Area.ABROAD) &#123;</span><br><span class="line">            results.add(apple);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(4) 选择进口的、大个的红苹果(我们假设重100克以上的是大苹果)：</p>
+<p>（4）选择进口的、大个的红苹果(我们假设重100克以上的是大苹果)：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;Apple&gt; <span class="title">selectRedAndHeavyAndAbroad</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Set&lt;Apple&gt; results = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (Apple apple : apples) &#123;</span><br><span class="line">        <span class="keyword">if</span> (apple.getArea() == Area.ABROAD </span><br><span class="line">        	&amp;&amp; apple.getArea() == Area.ABROAD</span><br><span class="line">        	&amp;&amp; apple.getWeight() &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            results.add(apple);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们面临的问题是什么？</p>
 <ol>
