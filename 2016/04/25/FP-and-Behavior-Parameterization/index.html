@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/index.html">
 <meta property="og:site_name" content="秋水逍遥">
 <meta property="og:description" content="本文以按颜色、大小、产地筛选一堆苹果这样一个情景为例，比较非参数化、数据参数化和通过函数式编程实现行为参数化，说明函数式编程的优势。">
-<meta property="og:updated_time" content="2016-04-27T06:03:22.000Z">
+<meta property="og:updated_time" content="2016-04-27T06:09:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数式编程与行为参数化">
 <meta name="twitter:description" content="本文以按颜色、大小、产地筛选一堆苹果这样一个情景为例，比较非参数化、数据参数化和通过函数式编程实现行为参数化，说明函数式编程的优势。">
@@ -340,7 +340,7 @@
 <p> 上面的设计中，代码重复随处可见。每个筛选方法除了if部分外，其余部分都完全相同。我们知道在软件设计中，“重复是万恶之源。”</p>
 </li>
 <li><p>对变化没有抵抗力</p>
-<p> 当增加更多的可筛选属性（例如品种、是否有机），或者更多的可选属性值（例如红绿之外还有黄色）时，我们别无选择，只能修改AppleSelector，加上这些选择方法。严重违反“开放封闭原则OCP”。OCP原则要求：当需要扩展系统的能力时，永远不要修改现有的类，而是通过添加更多的类（通常是现有类的子类或现有接口的实现类）来实现，也就是说：只添加，不修改。</p>
+<p> 当增加更多的可筛选属性（例如品种、是否有机），或者更多的可选属性值（例如红绿之外还有黄色）时，我们别无选择，只能修改AppleSelector，加上这些选择方法，这样做严重违反“开放封闭原则OCP”。OCP原则要求：当需要扩展系统的能力时，永远不要修改现有的类，而是通过添加更多的类（通常是现有类的子类或现有接口的实现类）来实现，也就是说：只添加，不修改。</p>
 </li>
 </ol>
 <h2 id="2-数据参数化"><a href="#2-数据参数化" class="headerlink" title="2. 数据参数化"></a>2. 数据参数化</h2><p>当然，我们是专业的程序猿，对付上述问题，我们已经拥有一个趁手的武器，叫做“数据参数化”。直接看例子：</p>

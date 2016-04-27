@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yyang.io/"/>
-  <updated>2016-04-27T06:03:22.000Z</updated>
+  <updated>2016-04-27T06:09:23.000Z</updated>
   <id>http://www.yyang.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/"/>
     <id>http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/</id>
     <published>2016-04-25T10:08:31.000Z</published>
-    <updated>2016-04-27T06:03:22.000Z</updated>
+    <updated>2016-04-27T06:09:23.000Z</updated>
     
     <content type="html">&lt;p&gt;废话少说，从实例开始。我们的实例就是从一堆苹果中选出符合条件的苹果。&lt;/p&gt;
 &lt;p&gt;我们知道，苹果有很多属性，都可以用来作为筛选的标准。简单起见，我们只选择三个属性：颜色，大小、产地。属性的取值范围是：&lt;/p&gt;
@@ -62,7 +62,7 @@
 &lt;p&gt; 上面的设计中，代码重复随处可见。每个筛选方法除了if部分外，其余部分都完全相同。我们知道在软件设计中，“重复是万恶之源。”&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;对变化没有抵抗力&lt;/p&gt;
-&lt;p&gt; 当增加更多的可筛选属性（例如品种、是否有机），或者更多的可选属性值（例如红绿之外还有黄色）时，我们别无选择，只能修改AppleSelector，加上这些选择方法。严重违反“开放封闭原则OCP”。OCP原则要求：当需要扩展系统的能力时，永远不要修改现有的类，而是通过添加更多的类（通常是现有类的子类或现有接口的实现类）来实现，也就是说：只添加，不修改。&lt;/p&gt;
+&lt;p&gt; 当增加更多的可筛选属性（例如品种、是否有机），或者更多的可选属性值（例如红绿之外还有黄色）时，我们别无选择，只能修改AppleSelector，加上这些选择方法，这样做严重违反“开放封闭原则OCP”。OCP原则要求：当需要扩展系统的能力时，永远不要修改现有的类，而是通过添加更多的类（通常是现有类的子类或现有接口的实现类）来实现，也就是说：只添加，不修改。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&quot;2-数据参数化&quot;&gt;&lt;a href=&quot;#2-数据参数化&quot; class=&quot;headerlink&quot; title=&quot;2. 数据参数化&quot;&gt;&lt;/a&gt;2. 数据参数化&lt;/h2&gt;&lt;p&gt;当然，我们是专业的程序猿，对付上述问题，我们已经拥有一个趁手的武器，叫做“数据参数化”。直接看例子：&lt;/p&gt;
