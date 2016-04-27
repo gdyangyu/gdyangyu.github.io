@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yyang.io/"/>
-  <updated>2016-04-27T07:06:50.000Z</updated>
+  <updated>2016-04-27T07:07:31.000Z</updated>
   <id>http://www.yyang.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/"/>
     <id>http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/</id>
     <published>2016-04-25T10:08:31.000Z</published>
-    <updated>2016-04-27T07:06:50.000Z</updated>
+    <updated>2016-04-27T07:07:31.000Z</updated>
     
     <content type="html">&lt;p&gt;废话少说，从实例开始。我们的实例就是从一堆苹果中选出符合某种条件的苹果。&lt;/p&gt;
 &lt;p&gt;我们知道，苹果有很多属性，都可以用来作为筛选的标准。简单起见，我们只选择三个属性：颜色，大小、产地。属性的取值范围是：&lt;/p&gt;
@@ -91,7 +91,7 @@
 &lt;/ol&gt;
 &lt;p&gt;没达到尽善尽美之前睡不着觉是优秀程序员的必备素质。我们还有没有更进一步的可能，在山穷水复疑无路之际，发现柳暗花明又一村？&lt;/p&gt;
 &lt;p&gt;还真的有这样的方法，隆重推出：&lt;strong&gt;行为参数化&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;行为参数化&quot;&gt;&lt;a href=&quot;#行为参数化&quot; class=&quot;headerlink&quot; title=&quot;行为参数化&quot;&gt;&lt;/a&gt;行为参数化&lt;/h2&gt;&lt;p&gt;我们在前面的问题是智慧不够，所以提供的解决方案都不够超然，而是太过“滞于物”了。在非参数化的形式中，我们的注意力放在&lt;strong&gt;属性值&lt;/strong&gt;（红、绿、轻、重、山东、陕西……）一级；在数据参数化形式中，我们的注意力放在&lt;strong&gt;属性&lt;/strong&gt;（颜色、重量、产地）一级。我们不知道用户会按什么条件筛选苹果，因此列出所有的属性的所有的组合；但是未来属性值和属性都有可能增加，因此我们的“所有”很快变成了“部分”，又需要修改和增补原来的设计。目前的两种设计，既&lt;strong&gt;过剩&lt;/strong&gt;又&lt;strong&gt;短缺&lt;/strong&gt;。“过剩”是因为我们提供了太多的筛选方法，其中绝大部分也许用户将来根本用不上；“短缺”是因为我们只能穷举目前已知的筛选条件，无法应对未来的扩展。&lt;/p&gt;
+&lt;h2 id=&quot;行为参数化&quot;&gt;&lt;a href=&quot;#行为参数化&quot; class=&quot;headerlink&quot; title=&quot;行为参数化&quot;&gt;&lt;/a&gt;行为参数化&lt;/h2&gt;&lt;p&gt;我们的问题是思考深度不够，所以提供的解决方案都不够超然，而是太过“滞于物”了。在非参数化的形式中，我们的注意力放在&lt;strong&gt;属性值&lt;/strong&gt;（红、绿、轻、重、山东、陕西……）一级；在数据参数化形式中，我们的注意力放在&lt;strong&gt;属性&lt;/strong&gt;（颜色、重量、产地）一级。我们不知道用户会按什么条件筛选苹果，因此列出所有的属性的所有的组合；但是未来属性值和属性都有可能增加，因此我们的“所有”很快变成了“部分”，又需要修改和增补原来的设计。目前的两种设计，既&lt;strong&gt;过剩&lt;/strong&gt;又&lt;strong&gt;短缺&lt;/strong&gt;。“过剩”是因为我们提供了太多的筛选方法，其中绝大部分也许用户将来根本用不上；“短缺”是因为我们只能穷举目前已知的筛选条件，无法应对未来的扩展。&lt;/p&gt;
 &lt;p&gt;让我们回到原始的需求，看看能否找出根本的解决之道：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;从一堆苹果中选出符合条件的苹果
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;谁来定义怎样叫做“符合条件”？&lt;/p&gt;
