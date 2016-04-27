@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yyang.io/"/>
-  <updated>2016-04-27T07:10:50.000Z</updated>
+  <updated>2016-04-27T07:39:45.000Z</updated>
   <id>http://www.yyang.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/"/>
     <id>http://www.yyang.io/2016/04/25/FP-and-Behavior-Parameterization/</id>
     <published>2016-04-25T10:08:31.000Z</published>
-    <updated>2016-04-27T07:10:50.000Z</updated>
+    <updated>2016-04-27T07:39:45.000Z</updated>
     
     <content type="html">&lt;p&gt;废话少说，从实例开始。我们的实例就是从一堆苹果中选出符合某种条件的苹果。&lt;/p&gt;
 &lt;p&gt;我们知道，苹果有很多属性，都可以用来作为筛选的标准。简单起见，我们只选择三个属性：颜色，大小、产地。属性的取值范围是：&lt;/p&gt;
@@ -148,6 +148,12 @@
 &lt;pre&gt;&lt;code&gt;传递时是名词
 执行时是动词
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;就像一台发动机，在被作为货物运输时是名词——被处理的被动对象，而在加电运转时是动词——一个能动的机械。运输时我们关注的是它的属性（重量、体积），运行时我们关注的是它的行为。&lt;/p&gt;
+&lt;h3 id=&quot;各种参数化方式的比较&quot;&gt;&lt;a href=&quot;#各种参数化方式的比较&quot; class=&quot;headerlink&quot; title=&quot;各种参数化方式的比较&quot;&gt;&lt;/a&gt;各种参数化方式的比较&lt;/h3&gt;&lt;p&gt;我们可以从僵化性/灵活性与繁杂性/简洁性两个维度比较各种参数化方式的优劣：&lt;/p&gt;
+&lt;img src=&quot;/2016/04/25/FP-and-Behavior-Parameterization/Big-Picture-of-Software-Development.png&quot; alt=&quot;行为参数化方式比较&quot; title=&quot;行为参数化方式比较&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;在僵化性/灵活性的维度上，数据参数化是相当僵化的（相前面所说的，既过剩又短缺），行为参数化则灵活的多（按需即时实现）。&lt;/li&gt;
+&lt;li&gt;在繁杂性/简洁性的维度上，数据参数化、实现类和匿名内类形式的行为参数化都比较繁杂（充满重复代码或样板代码），而lambda则非常简洁（直接用领域词汇表达业务意图）。&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&quot;进一步泛化&quot;&gt;&lt;a href=&quot;#进一步泛化&quot; class=&quot;headerlink&quot; title=&quot;进一步泛化&quot;&gt;&lt;/a&gt;进一步泛化&lt;/h2&gt;&lt;p&gt;目前为止，一切都很优雅：通过行为参数化，我们得到了简单性和灵活性的高度统一。我们通过逐步提高抽象的层级，使得筛选苹果的方法越来越通用：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一开始，我们直接关注属性值（数学隐喻是坐标值，例如红，绿，轻，重），针对属性值进行筛选；&lt;/li&gt;
