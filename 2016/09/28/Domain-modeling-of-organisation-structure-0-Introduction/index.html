@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OOAD,领域建模,组织架构," />
+  <meta name="keywords" content="OOAD,领域建模,组织结构," />
 
 
 
@@ -57,15 +57,15 @@
 领域模型应该是一切领域开发活动的出发点和依归。
 本系列文章以组织结构的领域建模为例，演示领域建模的方法和技巧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组织架构的领域建模 (0): 写在前面">
+<meta property="og:title" content="组织结构的领域建模 (0): 写在前面">
 <meta property="og:url" content="http://www.yyang.io/2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/index.html">
 <meta property="og:site_name" content="秋水逍遥">
 <meta property="og:description" content="对于软件开发来说，领域建模是最重要的活动，领域模型是最重要的产物。领域模型反映了软件所要服务的现实业务领域的本质，体现了我们对业务领域的认识、理解和洞见。
 领域模型应该是一切领域开发活动的出发点和依归。
 本系列文章以组织结构的领域建模为例，演示领域建模的方法和技巧。">
-<meta property="og:updated_time" content="2016-09-28T03:39:17.000Z">
+<meta property="og:updated_time" content="2016-09-28T03:45:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组织架构的领域建模 (0): 写在前面">
+<meta name="twitter:title" content="组织结构的领域建模 (0): 写在前面">
 <meta name="twitter:description" content="对于软件开发来说，领域建模是最重要的活动，领域模型是最重要的产物。领域模型反映了软件所要服务的现实业务领域的本质，体现了我们对业务领域的认识、理解和洞见。
 领域模型应该是一切领域开发活动的出发点和依归。
 本系列文章以组织结构的领域建模为例，演示领域建模的方法和技巧。">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title> 组织架构的领域建模 (0): 写在前面 | 秋水逍遥 </title>
+  <title> 组织结构的领域建模 (0): 写在前面 | 秋水逍遥 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -251,7 +251,7 @@
             
             
               
-                组织架构的领域建模 (0): 写在前面
+                组织结构的领域建模 (0): 写在前面
               
             
           </h1>
@@ -306,11 +306,11 @@
 </li>
 <li><p><strong>领域模型超然于具体的软件实现技术，在软件技术不断更新换代的同时发挥恒久的价值。</strong></p>
 <p>软件实现技术是日新月异的，语言、类库、框架会不断升级和更换，但只要业务领域没有变化，我们就不需要更换领域模型。我们需要做的，只不过是以不同的编程语言、不同的类库框架、不同的架构思想，去实现相同的领域模型。“天不变，道亦不变。”问题域是<em>“天”</em>，领域模型就是这个<em>“道”</em>，只要问题域这个<em>“天”</em>不变，领域模型这个<em>“道”</em>也不需要变，只有软件技术这样的<em>“术”</em>才需要频繁变更。</p>
-<p>​<br>本系列博文以<strong>组织架构</strong>为例，体现领域模型的进化过程。我们先从一个简单的模型开始，通过对问题域的深入分析，逐步洞悉业务领域的本质，推动领域模型的进化，最终达成一个简单的、通用的模型，既体现了组织架构领域的共性，又允许进行个性化的扩展，同时扩展的成本非常低。</p>
+<p>​<br>本系列博文以<strong>组织结构</strong>为例，体现领域模型的进化过程。我们先从一个简单的模型开始，通过对问题域的深入分析，逐步洞悉业务领域的本质，推动领域模型的进化，最终达成一个简单的、通用的模型，既体现了组织结构领域的共性，又允许进行个性化的扩展，同时扩展的成本非常低。</p>
 </li>
 </ol>
 <p>本文从Martin Fowler的《分析模式》一书中得益甚多。Party和Accountability等概念直接来自《分析模式》一书。但我的抽象过程和最终抽象与该书还是有所不同，请读者自行鉴别。</p>
-<h2 id="组织架构问题域说明"><a href="#组织架构问题域说明" class="headerlink" title="组织架构问题域说明"></a>组织架构问题域说明</h2><p>每个组织——党政机关、企业、事业单位等等——内部都存在组织结构。对于党政机关，有国家、省、市、县、镇、乡、村、部、厅、局、处、科、股；对于公司，有总公司、分公司、子公司、事业部、部门、科室；对于高校，有大学、学院、系、专业，等等等等。机构之间形成树形的层级关系，有的组织中还存在多个维度的组织层级，例如市公安局行政上级是市政府，业务上级是省公安厅。员工由某个组织雇佣，在某个机构担任一个职位，有的员工还会在多个机构担任不同的职位。除了上述各种实体和关系之外，还有职系、职级、职等等等各种概念……</p>
+<h2 id="组织结构问题域说明"><a href="#组织结构问题域说明" class="headerlink" title="组织结构问题域说明"></a>组织结构问题域说明</h2><p>每个组织——党政机关、企业、事业单位等等——内部都存在组织结构。对于党政机关，有国家、省、市、县、镇、乡、村、部、厅、局、处、科、股；对于公司，有总公司、分公司、子公司、事业部、部门、科室；对于高校，有大学、学院、系、专业，等等等等。机构之间形成树形的层级关系，有的组织中还存在多个维度的组织层级，例如市公安局行政上级是市政府，业务上级是省公安厅。员工由某个组织雇佣，在某个机构担任一个职位，有的员工还会在多个机构担任不同的职位。除了上述各种实体和关系之外，还有职系、职级、职等等等各种概念……</p>
 <p>读到这里，是不是脑子里充满了混乱和疑问？这是每个人面对新领域时候的正常反应——天才除外。下面的系列文章，将从混沌中寻找秩序，最终建构一个易于理解、易于扩展的相对完善的领域模型，各种概念各归其位，形成一个有机的整体。</p>
 <h2 id="关注领域建模，而不是领域模型"><a href="#关注领域建模，而不是领域模型" class="headerlink" title="关注领域建模，而不是领域模型"></a>关注领域建模，而不是领域模型</h2><p>再次说明，下面的系列文章，不是从一开始就建构一个完美的模型，而是从简单开始建立一系列模型，不断建立，又不断舍弃，形成新的模型，逐步趋于至善。这个就是真实世界中的真实的领域建模过程。</p>
 <p>重要的不是领域模型这个最终产物，而是领域建模这个寻寻觅觅的过程，是<em>“求道”</em>过程中的思考洞察和权衡取舍。</p>
@@ -333,7 +333,7 @@
           
             <a href="/tags/领域建模/" rel="tag">#领域建模</a>
           
-            <a href="/tags/组织架构/" rel="tag">#组织架构</a>
+            <a href="/tags/组织结构/" rel="tag">#组织结构</a>
           
         </div>
       
@@ -376,7 +376,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/"
-           data-title="组织架构的领域建模 (0): 写在前面" data-url="http://www.yyang.io/2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/">
+           data-title="组织结构的领域建模 (0): 写在前面" data-url="http://www.yyang.io/2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/">
       </div>
     
   </div>
@@ -473,7 +473,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#领域模型的重要性"><span class="nav-number">1.</span> <span class="nav-text">领域模型的重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组织架构问题域说明"><span class="nav-number">2.</span> <span class="nav-text">组织架构问题域说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关注领域建模，而不是领域模型"><span class="nav-number">3.</span> <span class="nav-text">关注领域建模，而不是领域模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#领域模型的重要性"><span class="nav-number">1.</span> <span class="nav-text">领域模型的重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组织结构问题域说明"><span class="nav-number">2.</span> <span class="nav-text">组织结构问题域说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关注领域建模，而不是领域模型"><span class="nav-number">3.</span> <span class="nav-text">关注领域建模，而不是领域模型</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
