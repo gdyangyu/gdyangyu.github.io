@@ -63,12 +63,14 @@
 <meta property="og:description" content="软件开发，尤其是大型软件开发是非常复杂的，涉及非常多的组件元素，需要作出大大小小的各种决策。软件开发的根本矛盾是不断增长的系统规模和复杂性与开发人员有限的大脑容量和处理速度之间的矛盾。:)
 为了了解软件开发的全貌，让我们上升到3万米的高空，对软件开发内容做一个全景式的鸟瞰，对我们要了解和实现的东西进行一个高层的切分。
 两个维度范围维度软件开发的主要目的是为其他行业的业务问题提供技术解决方案，例如为">
-<meta property="og:updated_time" content="2016-04-25T09:40:12.000Z">
+<meta property="og:image" content="http://www.yyang.io/2015/12/31/Big-Picture-of-Software-Development/Big-Picture.png">
+<meta property="og:updated_time" content="2016-07-05T05:04:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件开发大图景：两个维度，四个象限">
 <meta name="twitter:description" content="软件开发，尤其是大型软件开发是非常复杂的，涉及非常多的组件元素，需要作出大大小小的各种决策。软件开发的根本矛盾是不断增长的系统规模和复杂性与开发人员有限的大脑容量和处理速度之间的矛盾。:)
 为了了解软件开发的全貌，让我们上升到3万米的高空，对软件开发内容做一个全景式的鸟瞰，对我们要了解和实现的东西进行一个高层的切分。
 两个维度范围维度软件开发的主要目的是为其他行业的业务问题提供技术解决方案，例如为">
+<meta name="twitter:image" content="http://www.yyang.io/2015/12/31/Big-Picture-of-Software-Development/Big-Picture.png">
 
 
 
@@ -270,8 +272,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/分析设计/" itemprop="url" rel="index">
-                    <span itemprop="name">-分析设计</span>
+                  <a href="/categories/OOAD/" itemprop="url" rel="index">
+                    <span itemprop="name">分析设计</span>
                   </a>
                 </span>
 
@@ -312,7 +314,9 @@
 <p>这就是我们看待软件开发的第一个维度：范围维度。我们把软件开发的范围划分为问题域和解决方案域。处于问题域中的时候，我们的任务是认识世界，即了解在没有软件系统存在的情况下，现实业务领域是如何运作的；而处于解决方案域中的时候，我们是在改造世界，即通过设计和实现软件系统帮助业务领域运作得更好（更大、更快、更赚钱、更省钱、更透明、更灵活……）。</p>
 <p>在软件开发的术语中，“业务”、“领域”是问题域的同义词，“系统”是解决方案域的同义词（“系统”是“软件系统”的简称）。因此，“业务”分析师、”业务”规则、“业务”用例模型、“领域”模型、“领域”专家聚焦于问题域，而“系统”分析师、“系统”用例模型聚焦于解决方案域。</p>
 <h3 id="内-外维度"><a href="#内-外维度" class="headerlink" title="内/外维度"></a>内/外维度</h3><p>除了范围维度之外，我们还可以从另外的维度看待软件开发，其中一个非常有用的维度是内/外维度。从内/外视角看，系统在我们面前可以划分为外部视图和内部视图。外部视图是系统的黑盒视图，我们看不到它的内部组成和运作机制，只能够看到它呈现给外界的功能；而内部视图是系统的白盒视图，揭示了系统的内部组成和运作机制。</p>
-<h2 id="四个象限"><a href="#四个象限" class="headerlink" title="四个象限"></a>四个象限</h2><p>范围维度和内外维度两者是正交的，你可以把它们看成两条相互垂直相交的数轴——X轴和Y轴，它们把软件开发问题空间分割为四个区域——用数学的术语表示就是四个象限。分别说明如下：</p>
+<h2 id="四个象限"><a href="#四个象限" class="headerlink" title="四个象限"></a>四个象限</h2><p>范围维度和内外维度两者是正交的，你可以把它们看成两条相互垂直相交的数轴——X轴和Y轴，它们把软件开发问题空间分割为四个区域——用数学的术语表示就是四个象限。</p>
+<img src="/2015/12/31/Big-Picture-of-Software-Development/Big-Picture.png" alt="软件开发大图景" title="软件开发大图景">
+<p>分别说明如下：</p>
 <h3 id="问题域的外部视图——业务用例模型"><a href="#问题域的外部视图——业务用例模型" class="headerlink" title="问题域的外部视图——业务用例模型"></a>问题域的外部视图——业务用例模型</h3><p>这个象限从外部视角看待问题域，分析探究业务系统实现了哪些功能，对它的用户提供了哪些业务价值？每一项系统功能体现为一个业务用例。例如银行储蓄业务为储户提供存款、取款、转账和提供对账单等等服务，每一项服务就是一个业务用例。</p>
 <p>开发业务用例模型不是软件开发的必须步骤，但本人强烈建议不要忽略这一方面的工作。一方面，开发软件系统的目标就是实现和改进这些业务用例（或业务用例中的某些环节），业务用例为软件开发设定了目标和验收标准；另一方面，通过业务用例分析可以更有效地支持领域建模和系统用例建模，有助于发现领域对象和机制，防止系统用例遗漏或疏失。</p>
 <h3 id="问题域的内部视图——领域模型"><a href="#问题域的内部视图——领域模型" class="headerlink" title="问题域的内部视图——领域模型"></a>问题域的内部视图——领域模型</h3><p>这个象限从内部视角看待问题域，研究业务领域中固有的组成、结构、行为、机制和规则等等。这方面的工作称为“领域建模”，其产物称为“领域模型”。我们要重点分析研究的是：业务领域中有哪些关键的概念实体（例如银行储蓄业务中的账户、对账单、信用卡、借记卡等等）、各种概念实体之间的关系（关联、泛化、组合、聚合等等），以及它们之间如何交互以实现业务用例模型中规定的各项功能等等。</p>
@@ -421,21 +425,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

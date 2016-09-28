@@ -1,0 +1,805 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OO," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="秋水逍遥" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="很多开发人员搞不清属性和字段的区别，本文试图对其作出澄清。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正确区分属性和字段">
+<meta property="og:url" content="http://www.yyang.io/2016/06/27/Dont-confuse-properties-and-fields/index.html">
+<meta property="og:site_name" content="秋水逍遥">
+<meta property="og:description" content="很多开发人员搞不清属性和字段的区别，本文试图对其作出澄清。">
+<meta property="og:updated_time" content="2016-07-05T05:04:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正确区分属性和字段">
+<meta name="twitter:description" content="很多开发人员搞不清属性和字段的区别，本文试图对其作出澄清。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 正确区分属性和字段 | 秋水逍遥 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3477a850f15a644e6840ea01c2aba8f9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">秋水逍遥</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一蓑烟雨任平生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'k1wFgerryKPm2qkNfPXm','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                正确区分属性和字段
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-27T13:16:27+08:00" content="2016-06-27">
+              2016-06-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/27/Dont-confuse-properties-and-fields/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/27/Dont-confuse-properties-and-fields/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>很多开发人员搞不清属性和字段的区别，本文试图对其作出澄清。</p>
+<a id="more"></a>
+<p>在进行Java软件开发的时候，很多人都没有搞清Java对象中属性（Property）和字段（Field）的区别，以为属性就是字段。本文试图对这两个概念作一个澄清。</p>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><p>首先上一个例子：平面直角坐标系中的矩形。</p>
+<p>一个矩形的形状可以用宽（width）和高（height）来表示，而它的位置可以用左下角坐标lowerLeftCoordinate（例如(10, 5)）来表示。平面直角坐标系中任何一个点（Point）可以用这个点的坐标(x, y)来表示。</p>
+<p>点Point的定义是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> yang.yu.training;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.persistence.Embeddable;</div><div class="line"><span class="keyword">import</span> java.io.Serializable;</div><div class="line"><span class="keyword">import</span> java.util.Objects;</div><div class="line"></div><div class="line"><span class="meta">@Embeddable</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> y;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.x = x;</div><div class="line">        <span class="keyword">this</span>.y = y;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> x;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.x = x;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> y;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.y = y;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object other)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == other) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!(other <span class="keyword">instanceof</span> Point)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        Point that = (Point) other;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.x == that.x &amp;&amp;</div><div class="line">                <span class="keyword">this</span>.y == that.y;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Objects.hash(x, y);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Point("</span> + x + <span class="string">", "</span> + y + <span class="string">")"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Point <span class="title">of</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Point(x, y);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而矩形Rectangle的定义是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> yang.yu.training;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.persistence.Entity;</div><div class="line"><span class="keyword">import</span> javax.persistence.Id;</div><div class="line"><span class="keyword">import</span> java.io.Serializable;</div><div class="line"><span class="keyword">import</span> java.util.Objects;</div><div class="line"><span class="keyword">import</span> java.util.UUID;</div><div class="line"></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="keyword">private</span> String id = UUID.randomUUID().toString();</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Point lowerLeftCoordinate;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> _width;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> _height;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Rectangle</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>._width = width;</div><div class="line">        <span class="keyword">this</span>._height = height;</div><div class="line">        lowerLeftCoordinate = <span class="keyword">new</span> Point(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWidth</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> _width;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> _height;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> _width * _height;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSquare</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> _width == _height;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Point <span class="title">getLowerLeftCoordinate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> lowerLeftCoordinate;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Point <span class="title">getLoweRightCoordinate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Point(lowerLeftCoordinate.getX() + _width, lowerLeftCoordinate.getY());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Point <span class="title">getUpperLeftCoordinate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Point(lowerLeftCoordinate.getX(), lowerLeftCoordinate.getY() + _height);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Point <span class="title">getUpperRightCoordinate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Point(lowerLeftCoordinate.getX() + _width, lowerLeftCoordinate.getY() + _height);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveHorizontally</span><span class="params">(<span class="keyword">int</span> delta)</span> </span>&#123;</div><div class="line">        lowerLeftCoordinate = <span class="keyword">new</span> Point(lowerLeftCoordinate.getX() + delta, lowerLeftCoordinate.getY());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveVertically</span><span class="params">(<span class="keyword">int</span> delta)</span> </span>&#123;</div><div class="line">        lowerLeftCoordinate = <span class="keyword">new</span> Point(lowerLeftCoordinate.getX(), lowerLeftCoordinate.getY() + delta);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveTo</span><span class="params">(Point point)</span> </span>&#123;</div><div class="line">        lowerLeftCoordinate = <span class="keyword">new</span> Point(lowerLeftCoordinate.getX() + point.getX(), lowerLeftCoordinate.getY() + point.getY());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object other)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == other) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!(other <span class="keyword">instanceof</span> Rectangle)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        Rectangle that = (Rectangle) other;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._width == that._width &amp;&amp;</div><div class="line">                <span class="keyword">this</span>._height == that._height;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Objects.hash(_width, _height);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Rectangle&#123;"</span> +</div><div class="line">                <span class="string">"_width="</span> + _width +</div><div class="line">                <span class="string">", _height="</span> + _height +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了方便，矩形宽度、高度和点坐标都用整数int而不是浮点数double来表示。</p>
+<h2 id="属性和字段的定义"><a href="#属性和字段的定义" class="headerlink" title="属性和字段的定义"></a>属性和字段的定义</h2><p>在很多情况下，在一个类中，字段和属性往往一一对应，例如Point类中，我们有两个字段x和y，也有两个属性x和y与之一一对应：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> x;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> y;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面一行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> x;</div></pre></td></tr></table></figure>
+<p>在Point类中定义了一个字段（Field），名为x。</p>
+<p>根据JavaBean规范，下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义了一个可读（因为有getX()方法）、可写（因为有setX()方法）的属性（Property）x。属性的名字来自getX()或setX()。根据JavaBean规范，属性的名字是方法名getX/setX去掉get/set前缀之后，剩下的部分首字母改为小写来定义。因此，getX去掉get之后剩下X，再将它的首字母（在这里是唯一的字母）改为小写就是x。这就是属性名。同样地，在Rectangle类中，getWidth方法的存在意味着Rectangle类中存在一个名为width的属性。</p>
+<h2 id="属性和字段之间没有必然的一一对应关系"><a href="#属性和字段之间没有必然的一一对应关系" class="headerlink" title="属性和字段之间没有必然的一一对应关系"></a>属性和字段之间没有必然的一一对应关系</h2><p>请牢记：</p>
+<pre><code>在一个类之中，属性和字段没有必然的一一对应关系。
+</code></pre><p>具体表现在：</p>
+<h3 id="属性和字段的名称可以是不同的"><a href="#属性和字段的名称可以是不同的" class="headerlink" title="属性和字段的名称可以是不同的"></a>属性和字段的名称可以是不同的</h3><p>例如在Rectangle类中，字段<strong>_width</strong>对应的属性名是<strong>width</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> _width;			<span class="comment">//定义字段_width</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWidth</span><span class="params">()</span> </span>&#123;		<span class="comment">//定义属性width</span></div><div class="line">    <span class="keyword">return</span> _width;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="有的字段没有对应的属性，有的属性没有对应的字段"><a href="#有的字段没有对应的属性，有的属性没有对应的字段" class="headerlink" title="有的字段没有对应的属性，有的属性没有对应的字段"></a>有的字段没有对应的属性，有的属性没有对应的字段</h3><p>在Rectangle类中，我们有一个area属性（由getArea()方法定义）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> _width * _height;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>却没有一个相应的area字段存在。这个属性是通过计算（width * height）得来的。</p>
+<p>在Rectangle类中，只有左下角的坐标点，字段和属性一一对应：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Point lowerLeftCoordinate;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> Point <span class="title">getLowerLeftCoordinate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> lowerLeftCoordinate;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而右下角、左上角、右上角的坐标点，只有相应的属性（loweRightCoordinate、upperLeftCoordinate和upperRightCoordinate），没有相应的字段。它们都是计算属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Point <span class="title">getLoweRightCoordinate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Point(lowerLeftCoordinate.getX() + _width, lowerLeftCoordinate.getY());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> Point <span class="title">getUpperLeftCoordinate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Point(lowerLeftCoordinate.getX(), lowerLeftCoordinate.getY() + _height);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> Point <span class="title">getUpperRightCoordinate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Point(lowerLeftCoordinate.getX() + _width, lowerLeftCoordinate.getY() + _height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="有的属性是多个字段综合表现的结果"><a href="#有的属性是多个字段综合表现的结果" class="headerlink" title="有的属性是多个字段综合表现的结果"></a>有的属性是多个字段综合表现的结果</h3><p>例如判断矩形是不是正方形的属性（通过isSquare()方法定义），是比较_width和_height两个字段的结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSquare</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> _width == _height;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>面积属性也是这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> _width * _height;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="属性可以是只读、只写或读写的，而字段都是可读写的"><a href="#属性可以是只读、只写或读写的，而字段都是可读写的" class="headerlink" title="属性可以是只读、只写或读写的，而字段都是可读写的"></a>属性可以是只读、只写或读写的，而字段都是可读写的</h3><p>如果一个类中同时存在getAbc()（或isAbc()，如果属性类型是boolean类型）和setAbc()方法，那么属性abc就是可读可写的。如果没有相应的setAbc()方法，该属性就是只读的。如果没有相应的getAbc()（或isAbc()，如果属性类型是boolean类型）方法，该属性就是只写的。</p>
+<p>下面的Rectangle类代码中，width和height属性都是只读的，它们通过Rectangle类的构造函数设置，然后就永远不可以改变了，因为类中没有定义setWidth()和setHeight()方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> _width;</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> _height;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Rectangle</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>._width = width;</div><div class="line">    <span class="keyword">this</span>._height = height;</div><div class="line">    lowerLeftCoordinate = <span class="keyword">new</span> Point(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWidth</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> _width;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> _height;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="属性是类外部接口的一部分，字段是类内部实现的一部分"><a href="#属性是类外部接口的一部分，字段是类内部实现的一部分" class="headerlink" title="属性是类外部接口的一部分，字段是类内部实现的一部分"></a>属性是类外部接口的一部分，字段是类内部实现的一部分</h2><p>其实，上面那些区别都是浮云，真正重要的是要记住：</p>
+<pre><code>属性是类外部接口的一部分；
+字段是类内部实现的一部分。
+</code></pre><p>因此：</p>
+<pre><code>属性是你的代码和你代码的客户的协议的一部分，必须精心设计，不可随意改动；
+而字段属于你的自由王国，你可以随意添加、删除和修改，只要不影响类的外部接口。
+</code></pre><p>无论是在设计一个系统还是一个类，区分其的外部接口和内部实现都是非常有意义的。在系统的层级，外部接口主要包含接口和抽象基类，而内部实现包含上述接口的实现类和和基类的具体子类。在类的层级，外部接口包含属性和公有(public)方法签名，而内部实现包括字段、私有方法和公有方法的方法体。接口和实现的区分比起字段和方法的区分具有更重大的意义。</p>
+<pre><code>外部接口的“形诸外”是内部实现的“动于内”的结果。
+</code></pre><p>字段代表内部实现的静态部分，属性代表外部接口的静态部分。方法属于动态部分。</p>
+<h2 id="重要推论"><a href="#重要推论" class="headerlink" title="重要推论"></a>重要推论</h2><p>在软件开发领域，有一条基本原则：</p>
+<pre><code>面向接口编程，不要面向实现编程。
+</code></pre><p>因此我们可以得到这样的推论：</p>
+<h3 id="先定义属性而不是字段"><a href="#先定义属性而不是字段" class="headerlink" title="先定义属性而不是字段"></a>先定义属性而不是字段</h3><pre><code>先定义属性（因为它是类接口的一部分），然后根据需要定义字段，而不是相反。
+</code></pre><p>例如我在设计Rectangle类的时候，是根据外界对矩形的期待设计出它的长度、宽度、四个角的坐标、面积、是否正方形等属性，为了支撑这几个属性，我定义长度、宽度和左下角坐标三个字段；而不是先定义那几个字段，再通过IDE自动创建对应的属性（getter和setter）。</p>
+<h3 id="不要为每个字段默认生成属性"><a href="#不要为每个字段默认生成属性" class="headerlink" title="不要为每个字段默认生成属性"></a>不要为每个字段默认生成属性</h3><pre><code>千万不要、不要、不要不假思索地为每个字段添加getter和setter方法生成属性。
+</code></pre><p>我发现大多数程序员都是不假思索地先定义字段，然后利用IDE为所有的字段自动生成对应的读写属性。这是一种非常有害的习惯，会生成一个臃肿的、充满无用代码的类。直接将所有的字段设置为public的，或者封装为public属性，都违反了封装性原则，将大量的内部实现细节暴露给外界，加重了你的代码用户的认知负担，同时限制了你未来重构代码的自由度。</p>
+<p>在很多时候，设计一个不可变类（或部分属性不可变）是非常有益的。也就是说，只有getter，没有setter。字段初始值通过构造函数参数传入。</p>
+<h3 id="尽量通过方法而不是setter来修改字段值"><a href="#尽量通过方法而不是setter来修改字段值" class="headerlink" title="尽量通过方法而不是setter来修改字段值"></a>尽量通过方法而不是setter来修改字段值</h3><pre><code>尽量通过真正的方法而不是通过setter修改字段值。
+</code></pre><p>本质上，getter和setter不是真正的方法，而是属性访问器。Java不像C#那样拥有专门的属性访问器语法，只得用getter和setter方法来代替。在面向对象的设计中，方法和字段是相互作用的：字段可以影响方法调用的结果，而方法可以修改字段的取值。</p>
+<p>在Rectangle类中，我是通过三个move方法来修改lowerLeftCoordinate字段的值的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveHorizontally</span><span class="params">(<span class="keyword">int</span> delta)</span> </span>&#123;</div><div class="line">    lowerLeftCoordinate = <span class="keyword">new</span> Point(lowerLeftCoordinate.getX() + delta, lowerLeftCoordinate.getY());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveVertically</span><span class="params">(<span class="keyword">int</span> delta)</span> </span>&#123;</div><div class="line">    lowerLeftCoordinate = <span class="keyword">new</span> Point(lowerLeftCoordinate.getX(), lowerLeftCoordinate.getY() + delta);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveTo</span><span class="params">(Point point)</span> </span>&#123;</div><div class="line">    lowerLeftCoordinate = <span class="keyword">new</span> Point(lowerLeftCoordinate.getX() + point.getX(), lowerLeftCoordinate.getY() + point.getY());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而不是通过属性修改器来重新设置左下角坐标:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLowerLeftCoordinate</span><span class="params">(Point newCoordinate)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.lowerLeftCoordinate = lowerLeftCoordinate;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做的原因是：</p>
+<ol>
+<li>隐藏内部实现。不必将“通过修改左下角坐标来实现矩形的移动”这样的内部实现细节呈现给代码的用户。</li>
+<li>面向意图编程。因为用户的意图就是将矩形移动到一个新的位置，而不是重新设置它的左下角坐标。</li>
+</ol>
+<h2 id="JPA-Hibernate中区分属性和字段持久化"><a href="#JPA-Hibernate中区分属性和字段持久化" class="headerlink" title="JPA/Hibernate中区分属性和字段持久化"></a>JPA/Hibernate中区分属性和字段持久化</h2><p>在JPA和Hibernate这样的ORM软件中，我们可以根据属性/字段对实体进行查询。这时候必须区分是按属性还是按字段进行持久化。</p>
+<p>JPA/Hibernate中，如果@Id注解如果定义在属性上，就是根据属性进行持久化的；如果是定义在字段上，就是根据字段来进行持久化的。</p>
+<p>有什么不同？</p>
+<p>我们先看字段持久化（@Id定义在id字段上）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="keyword">private</span> String id;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> _width;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWidth</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> _width;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>在进行jpql或hql查询的时候，应该根据字段名<strong>_width</strong>而不是属性名<strong>width</strong>:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> o <span class="keyword">FROM</span> Rectangle o <span class="keyword">WHERE</span> o._width &gt; <span class="number">100</span></div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> o._width, o._height <span class="keyword">WHERE</span> o._width &gt; <span class="number">100</span></div></pre></td></tr></table></figure>
+<p>下面是属性持久化（@Id定义在getId()方法上）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String id;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> _width;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWidth</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> _width;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>在进行jpql或hql查询的时候，应该根据属性名<strong>width</strong>而不是字段名<strong>_width</strong>:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> o <span class="keyword">FROM</span> Rectangle o <span class="keyword">WHERE</span> o.width &gt; <span class="number">100</span></div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> o.width, o.height <span class="keyword">WHERE</span> o.width &gt; <span class="number">100</span></div></pre></td></tr></table></figure>
+<p>@Id字段定义在字段还是属性上决定了整个类的所有属性/字段的持久化策略。</p>
+<p>范例代码可以从<a href="https://git.oschina.net/yyang/properties-and-fields.git" target="_blank" rel="external">https://git.oschina.net/yyang/properties-and-fields</a>下载。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OO/" rel="tag">#OO</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/05/Interfaces-belong-to-their-clients-and-not-to-the-implementations/" rel="next" title="接口属于客户">
+                <i class="fa fa-chevron-left"></i> 接口属于客户
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/30/design-a-configuration-class/" rel="prev" title="OOAD范例：配置类设计">
+                OOAD范例：配置类设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/27/Dont-confuse-properties-and-fields/"
+           data-title="正确区分属性和字段" data-url="http://www.yyang.io/2016/06/27/Dont-confuse-properties-and-fields/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="杨宇" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">杨宇</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">杨宇的个人网站.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#范例"><span class="nav-number">1.</span> <span class="nav-text">范例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性和字段的定义"><span class="nav-number">2.</span> <span class="nav-text">属性和字段的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性和字段之间没有必然的一一对应关系"><span class="nav-number">3.</span> <span class="nav-text">属性和字段之间没有必然的一一对应关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性和字段的名称可以是不同的"><span class="nav-number">3.1.</span> <span class="nav-text">属性和字段的名称可以是不同的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有的字段没有对应的属性，有的属性没有对应的字段"><span class="nav-number">3.2.</span> <span class="nav-text">有的字段没有对应的属性，有的属性没有对应的字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有的属性是多个字段综合表现的结果"><span class="nav-number">3.3.</span> <span class="nav-text">有的属性是多个字段综合表现的结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性可以是只读、只写或读写的，而字段都是可读写的"><span class="nav-number">3.4.</span> <span class="nav-text">属性可以是只读、只写或读写的，而字段都是可读写的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性是类外部接口的一部分，字段是类内部实现的一部分"><span class="nav-number">4.</span> <span class="nav-text">属性是类外部接口的一部分，字段是类内部实现的一部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要推论"><span class="nav-number">5.</span> <span class="nav-text">重要推论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先定义属性而不是字段"><span class="nav-number">5.1.</span> <span class="nav-text">先定义属性而不是字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要为每个字段默认生成属性"><span class="nav-number">5.2.</span> <span class="nav-text">不要为每个字段默认生成属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量通过方法而不是setter来修改字段值"><span class="nav-number">5.3.</span> <span class="nav-text">尽量通过方法而不是setter来修改字段值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JPA-Hibernate中区分属性和字段持久化"><span class="nav-number">6.</span> <span class="nav-text">JPA/Hibernate中区分属性和字段持久化</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨宇</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<br/>
+<div class="theme-info">
+  <a href="http://www.miitbeian.gov.cn/" rel="xternal nofollow" target="_blank">
+    粤ICP备15089235号-1
+  </a>
+</div>
+
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yyang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+     
+  	  <script type="text/javascript">
+  		var duoshuo_user_ID = 6234364317794305000
+      var duoshuo_admin_nickname="yyang"
+  	  </script>
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

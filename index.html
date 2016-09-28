@@ -253,6 +253,855 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/" itemprop="url">
+                  组织架构的领域建模 (0): 写在前面
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-09-28T09:44:05+08:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>我认为对于软件开发来说，领域建模是最重要的活动，领域模型是最重要的产物。领域模型反映了软件所要服务的现实业务领域的本质，体现了我们对业务领域的认识、理解和洞见。</p>
+<p>领域模型应该是一切领域开发活动的出发点和依归。</p>
+<h2 id="领域模型的重要性"><a href="#领域模型的重要性" class="headerlink" title="领域模型的重要性"></a>领域模型的重要性</h2><p>领域模型的重要性体现在：</p>
+<ol>
+<li><p><strong>领域模型的正确性决定了软件在业务上的正确性。</strong></p>
+<p>领域模型代表我们对问题域——即软件所要服务的现实业务领域——的组成、结构、行为、机制和规则的认识和理解。模型错误就是对问题域的认识错误，根据错误的模型开发出来的软件（解决方案）必然错漏百出，不符合业务需要。正如同解数学题，如果我们对试题的理解是错误的，我们给出的答案必然是错的。正如同赛跑，如果方向错误了，跑得快是没有什么用的。高超的设计思想和编码技巧都无法弥补领域模型的缺陷。</p>
+</li>
+<li><p><strong>领域模型的抽象性决定了软件在未来业务上的扩展性。</strong></p>
+<p>我们知道在问题域中，既存在共性，也存在个性。好的领域模型通过抽象和分解等等方式，既实现了共性，也使个性化成为可能。不好的领域模型，或者无法进行个性化扩展，或者扩展的成本很高，需要对系统进行伤筋动骨的改动。</p>
+<p>好的领域模型既满足当前客户的需要，也支持相同领域其他客户的需要；既符合当前业务需要，也支持未来业务扩展的需要。无论是在空间还是时间上的扩展，都可以低成本实现，与此同时，系统现有部分的正确性和可靠性丝毫不受影响。</p>
+</li>
+<li><p><strong>领域模型超然于具体的软件实现技术，在软件技术不断更新换代的同时发挥恒久的价值。</strong></p>
+<p>软件实现技术是日新月异的，语言、类库、框架会不断升级和更换，但只要业务领域没有变化，我们就不需要更换领域模型。我们需要做的，只不过是以不同的编程语言、不同的类库框架、不同的架构思想，去实现相同的领域模型。“天不变，道亦不变。”问题域是<em>“天”</em>，领域模型就是这个<em>“道”</em>，只要问题域这个<em>“天”</em>不变，领域模型这个<em>“道”</em>也不需要变，只有软件技术这样的<em>“术”</em>才需要频繁变更。</p>
+<p>​<br>本系列博文以<strong>组织架构</strong>为例，体现领域模型的进化过程。我们先从一个简单的模型开始，通过对问题域的深入分析，逐步洞悉业务领域的本质，推动领域模型的进化，最终达成一个简单的、通用的模型，既体现了组织架构领域的共性，又允许进行个性化的扩展，同时扩展的成本非常低。</p>
+</li>
+</ol>
+<p>本文从Martin Fowler的《分析模式》一书中得益甚多。Party和Accountability等概念直接来自《分析模式》一书。但我的抽象过程和最终抽象与该书还是有所不同，请读者自行鉴别。</p>
+<h2 id="组织架构问题域说明"><a href="#组织架构问题域说明" class="headerlink" title="组织架构问题域说明"></a>组织架构问题域说明</h2><p>每个组织——党政机关、企业、事业单位等等——内部都存在组织结构。对于党政机关，有国家、省、市、县、镇、乡、村、部、厅、局、处、科、股；对于公司，有总公司、分公司、子公司、事业部、部门、科室；对于高校，有大学、学院、系、专业，等等等等。机构之间形成树形的层级关系，有的组织中还存在多个维度的组织层级，例如市公安局行政上级是市政府，业务上级是省公安厅。员工由某个组织雇佣，在某个机构担任一个职位，有的员工还会在多个机构担任不同的职位。除了上述各种实体和关系之外，还有职系、职级、职等等等各种概念……</p>
+<p>读到这里，是不是脑子里充满了混乱和疑问？这是每个人面对新领域时候的正常反应——天才除外。下面的系列文章，将从混沌中寻找秩序，最终建构一个易于理解、易于扩展的相对完善的领域模型，各种概念各归其位，形成一个有机的整体。</p>
+<h2 id="关注领域建模，而不是领域模型"><a href="#关注领域建模，而不是领域模型" class="headerlink" title="关注领域建模，而不是领域模型"></a>关注领域建模，而不是领域模型</h2><p>再次说明，下面的系列文章，不是从一开始就建构一个完美的模型，而是从简单开始建立一系列模型，不断建立，又不断舍弃，形成新的模型，逐步趋于至善。这个就是真实世界中的真实的领域建模过程。</p>
+<p>重要的不是领域模型这个最终产物，而是领域建模这个寻寻觅觅的过程，是<em>“求道”</em>过程中的思考洞察和权衡取舍。</p>
+<p>金源诗人元好问《论诗三十首》中有这样的句子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">​鸳鸯绣了从教看，莫把金针度与人。</div></pre></td></tr></table></figure>
+<p>绣得栩栩如生的鸳鸯图不重要，刺绣的针法才重要。不要黄金，要点石成金的那根手指。</p>
+<p>所以：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">​别关注领域模型（Domain <span class="keyword">Model</span>），关注领域建模（Domain Modeling）。</div></pre></td></tr></table></figure>
+<p>掌握了领域建模的技巧，你可以在不同的领域创建无数优秀的领域模型。领域建模的技巧，就是绣鸳鸯的针法，就是点石成金的那根手指。</p>
+<p>领域建模的技能是一种可以习得技能，要掌握它，需要的是勇气，而不是天赋。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/17/Political-correctness-should-be-abandoned/" itemprop="url">
+                  要政治正确，还是要科学客观
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-09-17T23:04:31+08:00" content="2016-09-17">
+              2016-09-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/17/Political-correctness-should-be-abandoned/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/Political-correctness-should-be-abandoned/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>科学无禁区。重要的是客观、真实，而不是“政治正确”。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/17/Political-correctness-should-be-abandoned/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/03/Whose-fishing-island/" itemprop="url">
+                  谁的钓鱼岛？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-09-03T10:42:16+08:00" content="2016-09-03">
+              2016-09-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/03/Whose-fishing-island/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/03/Whose-fishing-island/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>钓鱼岛是谁的？</p>
+<p>大部分中国人认为是中国的，大部分日本人认为是日本的。</p>
+<p>小部分中国人寻找支持钓鱼岛属于中国的证据，然后相信钓鱼岛是中国的。小部分日本人寻找支持钓鱼岛属于日本的证据，然后相信钓鱼岛是日本的。</p>
+<p>也有极小一部分的中国人和日本人，会同时搜集两方面的证据，但是对支持己方的证据不加辨别，深表认同，对支持对方的证据不加辨别，直斥为胡说八道。</p>
+<p>我期望还有这样一群人，他们没有任何预设立场，在没有看过双方的证据之前不作任何钓鱼岛归属方面的判断；如果想要做出判断，就公平地搜集双方的证据，然后用客观、公正的心态去分析证据，根据客观事实而不是利益得失去判断钓鱼岛的归属。不要因为你是中国人，就倾向于认为钓鱼岛属于中国；也不要因为你是日本人，就倾向于认为钓鱼岛属于日本。</p>
+<p>如果没有这样的人，这个世界奉行的仍然是丛林法则，有暴力无公义。</p>
+<p>如果奉行丛林法则，我们就不要怨恨当年日本人对我们的亡国灭种；如果相信公义，就不要在国家强大之后整天叫嚣要核平我们弱小的邻居。</p>
+<p>相比之下，在日本曾有教授著书，认为钓鱼岛属于中国，在日本公开出版，而此人仍然能够自由生活在日本。想象一下如果一个中国人出书表明钓鱼岛属于日本，此人必将成为中国政府和人民的共同敌人，不是坐牢就是被殴死。</p>
+<p>在中道、理性、客观、平和之人成为世界主流之前，人类社会将始终处于战争和灭绝的阴影之下。</p>
+<p>微斯人，吾谁与归？</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/26/member-passenger-assignment-modeling-relationships/" itemprop="url">
+                  成员、乘客与任职——对关系建模
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-26T14:49:48+08:00" content="2016-07-26">
+              2016-07-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/26/member-passenger-assignment-modeling-relationships/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/26/member-passenger-assignment-modeling-relationships/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在领域建模的时候，直接对两个实体间的关系进行显式建模，往往会得到更好的结果。</p>
+<p>下面，我们通过三个例子详细说明这一点。</p>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="实例1：航班客运"><a href="#实例1：航班客运" class="headerlink" title="实例1：航班客运"></a>实例1：航班客运</h2><h2 id="实例2：项目管理"><a href="#实例2：项目管理" class="headerlink" title="实例2：项目管理"></a>实例2：项目管理</h2><h2 id="实例3：人力资源管理"><a href="#实例3：人力资源管理" class="headerlink" title="实例3：人力资源管理"></a>实例3：人力资源管理</h2>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/30/design-a-configuration-class/" itemprop="url">
+                  OOAD范例：配置类设计
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-30T10:56:26+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/30/design-a-configuration-class/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/30/design-a-configuration-class/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>在很多应用程序中，我们都需要一个配置类Configuration，通常从一个文本文件中读入配置信息，根据配置调整应用的行为。通过这样的方式，我们可以用相同的代码来适应不同的环境，达到<strong>灵活性</strong>的目标。</p>
+<p>本文探索如何设计好这样的配置类。我们的重点不在于设计的产物——配置类——本身，而是在设计中的权衡取舍，以及取舍的原则。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/30/design-a-configuration-class/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/27/Dont-confuse-properties-and-fields/" itemprop="url">
+                  正确区分属性和字段
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-27T13:16:27+08:00" content="2016-06-27">
+              2016-06-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/27/Dont-confuse-properties-and-fields/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/27/Dont-confuse-properties-and-fields/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>很多开发人员搞不清属性和字段的区别，本文试图对其作出澄清。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/27/Dont-confuse-properties-and-fields/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/05/Interfaces-belong-to-their-clients-and-not-to-the-implementations/" itemprop="url">
+                  接口属于客户
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-05T10:19:31+08:00" content="2016-06-05">
+              2016-06-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OOAD/" itemprop="url" rel="index">
+                    <span itemprop="name">分析设计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/05/Interfaces-belong-to-their-clients-and-not-to-the-implementations/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/05/Interfaces-belong-to-their-clients-and-not-to-the-implementations/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>“接口属于客户，不属于它所在的类型层次结构。”这是Robert C. Martin在他的名著《敏捷软件开发：原则、模式、实践》中提出来的观点。因此，接口应该表达客户领域的语义，由客户代码定义和控制，并和客户代码一起打包。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/05/Interfaces-belong-to-their-clients-and-not-to-the-implementations/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/01/data-feature-domain-driven/" itemprop="url">
+                  企业应用开发范式比较：数据驱动、特性驱动与领域驱动
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-01T11:09:22+08:00" content="2016-06-01">
+              2016-06-01
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/01/data-feature-domain-driven/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/01/data-feature-domain-driven/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在开发企业应用的时候，典型的开发范式基本上可以总结为三种：</p>
+<ul>
+<li><strong>数据驱动</strong>：认为企业应用就是数据的存储和展示。其典型开发方式是“以数据库为中心的增删改查（CRUD）”，或者是Martin Fowler的《企业应用架构模式》中的“表模块”模式。</li>
+<li><strong>特性驱动</strong>：认为企业应用是系统功能的集合，这些功能基本上是独立实现的。其典型的开发方式是Martin Fowler的《企业应用架构模式》中的“事务脚本”模式。</li>
+<li><strong>领域驱动</strong>：认为企业应用像机器一样，由多个具有不同能力的零件（对象）组成，这些零件相互配合实现系统的功能。其典型的开发方式是Martin Fowler的《企业应用架构模式》中的“领域模型”模式。</li>
+</ul>
+<p>下面先对它们作一个总结性的对比：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>数据驱动</th>
+<th>特性驱动</th>
+<th>领域驱动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>软件世界观</strong></td>
+<td>软件就是数据的存储和展示</td>
+<td>软件是功能特性的集合</td>
+<td>软件是由相互协作的智能零件组成的一台能动的机器</td>
+</tr>
+<tr>
+<td><strong>核心关注点</strong></td>
+<td>数据</td>
+<td>功能特性</td>
+<td>领域对象</td>
+</tr>
+<tr>
+<td><strong>核心模型</strong></td>
+<td>数据模型    /关系模型</td>
+<td>用例模型</td>
+<td>领域模型</td>
+</tr>
+<tr>
+<td><strong>业务逻辑组织典型模式</strong></td>
+<td>CRUD或表模块</td>
+<td>事务脚本</td>
+<td>领域模型</td>
+</tr>
+<tr>
+<td><strong>业务逻辑实现典型位置</strong></td>
+<td>数据库、表示层或缺失业务逻辑</td>
+<td>应用层</td>
+<td>领域层</td>
+</tr>
+<tr>
+<td><strong>重用价值</strong></td>
+<td>低</td>
+<td>较低</td>
+<td>高</td>
+</tr>
+<tr>
+<td><strong>扩展成本</strong></td>
+<td>极高</td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td><strong>问题域/解决方案域语义距离</strong></td>
+<td>大</td>
+<td>较大</td>
+<td>小</td>
+</tr>
+</tbody>
+</table>
+<p>先做一个总结陈词（我不会为这个论断道歉）：</p>
+<pre><code>在三种开发范式中，数据驱动最差，领域驱动最好，特性驱动介于两者之间。
+</code></pre><p>很不幸的是：在当前企业应用开发中，数据驱动的CRUD方式占了统治地位。</p>
+<h2 id="1-问题域简介"><a href="#1-问题域简介" class="headerlink" title="1. 问题域简介"></a>1. 问题域简介</h2><p>在本文中，我以一个银行账户应用开发为例，说明三种开发范式的典型实现方式以及它们的优缺点。</p>
+<p>个人和机构都可能在银行开设一个或多个银行账户。账户的类型都很多种，我们这里只关注储蓄账户和信用账户两种类型。</p>
+<p>对每种账户，都可以进行存款、取款或转账等操作，也可以查看当前余额和获取一段时间的对账单。</p>
+<p>每种账户在取款或转账时都会有限额。对储蓄账户来说，限额就是不得超过当前账户余额；对信用账户来说，限额就是当前信用额度减去已经刷卡消费的金额。</p>
+<p>储蓄账户和信用账户还有很多方面的区别，例如信用卡在取现是需要支付手续费等，但为了减少复杂性，我们的范例中先忽略掉这方面的内容。</p>
+<p>下面我们用三种范式分别实现该问题域的解决方案，然后分析各种范式的优劣得失。为了便于比较，三种范式都采用相同的架构——N层应用架构。</p>
+<h2 id="2-数据驱动范式"><a href="#2-数据驱动范式" class="headerlink" title="2. 数据驱动范式"></a>2. 数据驱动范式</h2><p>数据驱动设计范式的软件世界观认为：软件是用于处理数据的虚拟机器。软件开发的核心关注点应该是数据，软件的设计和构建应该围绕数据的存储、检索和展现来开展。</p>
+<p>数据驱动设计范式以数据模型为核心和出发点来进行开发。如果采用关系数据库为数据存储媒介，软件的核心就是关系模型，通常表示为E-R图（实体-关系图）的形式。</p>
+<p>数据驱动设计范式认为，对数据只有四种可能的操作：增（Create）、删（Delete）、改（Update）、查（Retrieve），简称CRUD。</p>
+<h3 id="2-1-数据模型"><a href="#2-1-数据模型" class="headerlink" title="2.1 数据模型"></a>2.1 数据模型</h3><p>问题域的表述中有这样一种说法：“账户的类型都很多种，我们这里只关注储蓄账户和信用账户两种类型。”这里暗示了一个类型层级的存在：储蓄账户和信用账户都是一种账户。在“账户”这个概念层级上，它们有相同的行为——存款、取款、转账、获取余额、获取对账单；但在具体细节上，两种账户实现相同的行为时遵循不同的业务规则。</p>
+<p>这里的一个重大选择是：</p>
+<ul>
+<li>只创建一个统一的<strong>账户（Account）</strong>实体（对应到数据库中的一张表），用一个<strong>鉴别列</strong>（例如名为CATEGORY的字符串型列）来区分储蓄账户和信用账户，或者：</li>
+<li>将储蓄账户和信用账户分别建模为独立的实体SavingAccount和CreditAccount，不将它们看成是同类的东西。</li>
+</ul>
+<p>同样地，银行账户的拥有人可能是个人，也可能是公司、政府部门或其他机构。如果是个人，我们要记录他/她的姓名、身份证号码等；如果是机构，我们要记录其名称、所属地区等等信息。</p>
+<p>在数据建模的时候，也有两种选择：</p>
+<ul>
+<li>只创建一个统一的Party实体，统一代表个人和机构。用一个鉴别列区分该Party是一个自然人还是一家机构。该表中有些列（例如id和名称）是个人和机构共有的；而一些列是个人特有的（例如性别、身份证号码等），一些列是机构特有的（例如所属地区、组织机构代码等）。或者：</li>
+<li>将自然人和机构分别建模为独立的实体Person和Organization，不将两者看成是同类的东西。</li>
+</ul>
+<p>每个账户都属于一个持有人(Owner)，该持有人可能是个人，也可能是机构。如果采用第一种方式，在Account表（或者SavingAccount和CreditAccount两张表中）只需要定义一个owner_id字段，指向Party表的主键，根据对应的Party的鉴别列可以知道持有人是个人还是机构。如果采用第二种方式，在Account/SavingAccount/CreditAccount表中必须定义三个字段：owner_person_id（自然人id）、owner_organization_id（机构id）和owner_type（持有人类型，有个人/机构两种选择）。如果持有人是个人，owner_person_id的取值为某个人的id，owner_organization_id的取值为null，owner_type的取值为PERSON。；如果持有人是机构，owner_person_id的取值为null，owner_organization_id的取值为某个机构的id，owner_type的取值为ORG。</p>
+<p>由于</p>
+<h2 id="3-特性驱动范式"><a href="#3-特性驱动范式" class="headerlink" title="3. 特性驱动范式"></a>3. 特性驱动范式</h2><h2 id="4-领域驱动范式"><a href="#4-领域驱动范式" class="headerlink" title="4. 领域驱动范式"></a>4. 领域驱动范式</h2>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/25/FP-and-Behavior-Parameterization/" itemprop="url">
                   函数式编程与行为参数化
                 </a>
@@ -274,7 +1123,7 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/分析设计/" itemprop="url" rel="index">
+                  <a href="/categories/OOAD/" itemprop="url" rel="index">
                     <span itemprop="name">分析设计</span>
                   </a>
                 </span>
@@ -448,340 +1297,14 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/31/DDD-and-Layered-Architecture/" itemprop="url">
-                  DDD与分层架构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-31T20:15:39+08:00" content="2015-12-31">
-              2015-12-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/分析设计/" itemprop="url" rel="index">
-                    <span itemprop="name">分析设计</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/31/DDD-and-Layered-Architecture/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/31/DDD-and-Layered-Architecture/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>DDD是一种设计思想，它本身不绑定到任何一种具体的架构风格，可以应用在多种不同的架构风格中。本文探讨在经典的分层架构中如何应用DDD，以及在DDD的语境下，分层结构每一层的具体职责。</p>
-<p>分层架构是企业应用开发中采用率非常高的一种架构风格。它将软件系统的不同职责划分到不同的逻辑层中，并严格定义这些逻辑层的调用顺序。</p>
-<p>在《领域驱动设计——软件核心复杂性的应对之道》一书中，DDD范式的创始人Evans提出下图所示的这样一种分层架构：</p>
-<img src="/2015/12/31/DDD-and-Layered-Architecture/layered-architecture.png" alt="分层架构" title="分层架构">
-<p>整个系统划分为基础设施层（Infrastructure）、领域层（Domain）、应用层（Application）和用户接口层（User Interface，也称为表示层）。下面从各个维度分别讨论之。</p>
-<h2 id="职责分配"><a href="#职责分配" class="headerlink" title="职责分配"></a>职责分配</h2><p>四个逻辑层之间有着明确的职责划分。</p>
-<h3 id="领域层（Domain-Layer）"><a href="#领域层（Domain-Layer）" class="headerlink" title="领域层（Domain Layer）"></a>领域层（Domain Layer）</h3><pre><code>领域层实现业务逻辑。
-</code></pre><p>什么是业务逻辑？业务逻辑就是存在于问题域即业务领域中的实体、概念、规则和策略等，与具体的实现技术无关，主要包含下面的内容：</p>
-<ul>
-<li>业务实体（领域对象）。例如银行储蓄领域中的账户、信用卡等等业务实体。</li>
-<li>业务规则。例如借记卡取款数额不得超过账户余额，信用卡支付不得超过授信金额，转账时转出账户余额减少的数量等于转入账户余额增加的数量，取款、存款和转账必须留下记录，等等。</li>
-<li>业务策略。例如机票预订的超订策略（卖出的票的数量稍微超过航班座位的数量，以防有些旅客临时取消登机导致座位空置）等。</li>
-<li>完整性约束。例如账户的账号不得为空，借记卡余额不得为负数等等。本质上，完整性约束是业务规则的一部分。</li>
-<li>业务流程。例如，“在线订购”是一个业务流程，它包括“用户登录-选择商品-结算-下订单-付款-确认收货”这一系列流程。</li>
-</ul>
-<p>对领域层的进一步说明如下：</p>
-<ul>
-<li><strong>领域层映射到领域模型，是问题域的领域模型在软件中的反映。</strong></li>
-<li>包含实体、值对象和领域服务等领域对象，通常这些领域对象和问题域中的概念实体一一对应，具有相同或相似的属性和行为。</li>
-<li>在实体、值对象和领域服务等领域对象的方法中封装实现业务规则和保证完整性约束（这一点是与CRUD模式相比最明显的差别，CRUD中的领域对象没有行为）。</li>
-<li>领域对象在实现业务逻辑上具备坚不可摧的完整性，意味着不管外界代码如何操作，都不可能创建不合法的领域对象（例如没有账户号码或余额为负数的借记卡对象），亦不可能打破任何业务规则（例如在多次转账之后，钱凭空丢失或凭空产生）。</li>
-<li>领域对象的功能是高度内聚的，具有单一的职责，任何不涉及业务逻辑的复杂的组合操作都不在领域层而在应用层中实现。</li>
-<li>领域层中的全部领域对象的总和在功能上是完备的，意味着系统的所有行为都可以由领域层中的领域对象组合实现。</li>
-</ul>
-<h3 id="应用层（Application-Layer）"><a href="#应用层（Application-Layer）" class="headerlink" title="应用层（Application Layer）"></a>应用层（Application Layer）</h3><pre><code>应用层定义系统的业务功能，并指挥领域层中的领域对象实现这些功能。
-</code></pre><p>应用层是整个系统的功能外观，封装了领域层的复杂性并隐藏了其内部实现机制。</p>
-<ul>
-<li><strong>应用层映射到系统用例模型，是系统用例模型在软件中的反映。</strong></li>
-<li>应用层接口描述了系统的全部功能，意味着系统用例模型中的所有用例都可以在应用层接口中找到对应的方法。</li>
-<li>应用层实现类不实现业务逻辑，它通过排列组合领域层的领域对象来实现用例，它的职责可表示为“编排和转发”，即将它要实现的功能委托给一个或多个领域对象来实现，它本身只负责安排工作顺序和拼装操作结果。</li>
-</ul>
-<h3 id="基础设施层（Infrastructure-Layer）"><a href="#基础设施层（Infrastructure-Layer）" class="headerlink" title="基础设施层（Infrastructure Layer）"></a>基础设施层（Infrastructure Layer）</h3><pre><code>基础设施层为其余各层提供技术支持。
-</code></pre><p>基础设施层是系统中的技术密集部分。它为领域层、应用层的业务服务（例如持久化、消息通信等等）提供具体的技术支持，用户接口层通常使用特定的表示层框架（例如SpringMVC、Struts或Tapestry）实现，但有需要时也可以申请技术设施层提供专门的技术支持。</p>
-<p>一些例子：</p>
-<ul>
-<li>领域层需要持久化服务，在DDD中，领域层通过仓储（Repository）接口定义持久化需求，基础设施层通过采用JDBC、JPA、Hibernate、NoSQL等技术之一实现领域层的仓储接口，为领域层提供持久化服务。</li>
-<li>领域层需要消息通知服务，在领域层中定义了一个NotificationService领域服务接口，基础设施层通过采用手机短信、电子邮件、Jabber等技术实现NotificationService领域服务接口，为领域层提供消息通知服务。</li>
-<li>用户接口层需要一个对象序列化服务，将任何JavaBean序列化为JSON字符串，可以在用户接口层定义一个ObjectSerializer服务接口，基础设施层通过采用Gson实现这一接口，为用户接口层提供对象序列化服务。</li>
-</ul>
-<p>以上例子都是满足依赖倒置原则，通过控制反转的方式为高层模块提供低层服务，在实践中，可以通过Spring等IoC容器将基础设施层的实现类实例进行依赖注入。</p>
-<p>基础设施层的典型实现形式是提供一个一个的类，这些类使用某些专有的技术实现其余各层（主要是领域层）定义的接口，例如提供一个领域层的仓储接口的实现类，使用Hibernate实现持久化，以及提供领域层的通知接口的实现类，使用ActiveMQ广播领域层中发生的事件，等等。</p>
-<p>基础设施层也被称为数据源层或数据访问层。这些名称的一个缺点是给读者一个强烈的暗示：基础设施层只负责数据库访问。虽然数据库访问是基础设施层的职责之一，但基础设施层的负责范围比单纯数据库访问宽广的多，它实现了系统的全部技术性需求，例如上面例子中的通知服务和对象序列化服务，等等。</p>
-<h3 id="用户接口层（User-Interface）"><a href="#用户接口层（User-Interface）" class="headerlink" title="用户接口层（User Interface）"></a>用户接口层（User Interface）</h3><pre><code>用户接口层为外部用户访问底层系统提供交互界面和数据表示。
-</code></pre><p>用户接口层在底层系统之上封装了一层可访问外壳，为特定类型的外部用户（人或计算机程序）访问底层系统提供访问入口，并将底层系统的状态数据以该类型客户需要的形式呈现给它们。</p>
-<p>用户接口层有两个任务：（1）从用户处接收命令操作，改变底层系统状态；（2）从用户处接收查询操作，将底层系统状态以合适的形式呈现给用户。</p>
-<p>说明：</p>
-<ul>
-<li>典型的用户是人类用户，但是也可能是别的计算机系统。例如如果ERP系统要访问我们的系统获取信息，它也是一种用户。</li>
-<li>不同类型的用户需要不同形式的用户接口，例如为人类用户提供Web界面和手机App，为ERP软件用户提供REST服务接口。</li>
-<li>不同类型的用户需要不同形式的数据表示，包括表现形式的不同（XML、JSON、HTML）和内容的不同（例如手机App中呈现的数据内容往往比Web页面中呈现的少）。</li>
-<li>用户接口层对应用层进行封装，用户接口层的操作与应用层上定义的操作通常是一一对应的关系。用户接口层从外部用户处接受输入，转换成应用层方法的参数形式，调用应用层方法将任务交由底层系统执行，并将返回结果转换成合适的形式返回给外部用户。</li>
-<li>用户界面层的典型任务是下面三个：校验——校验外部客户输入的数据是否合法；转换——将外部客户的输入转换成对底层系统的方法调用参数，以及将底层系统的调用结果转换成外部客户需要的形式；转发——将外部客户的请求转发给底层系统。</li>
-</ul>
-<p>用户接口层也被称为用户界面层或表示层。</p>
-<p>有时候，为了某些需要，我们可以从用户接口层中分离出一个亚层，可命名为门面层（Facade）。位于真正的用户接口层和应用层之间。</p>
-<h3 id="门面层-Facade-Layer"><a href="#门面层-Facade-Layer" class="headerlink" title="门面层(Facade Layer)"></a>门面层(Facade Layer)</h3><pre><code>门面层隔离前台和后台系统，定义特定于用户接口层的数据结构，从后台获取数据内容并转化为用户接口层的数据形式。
-</code></pre><p>从用户接口层中分离出专门的门面层，具有下面的优势：</p>
-<ul>
-<li>使得用户接口层能够独立于后台系统，与后台系统并行开发。</li>
-</ul>
-<p>用户接口层通过门面层接口与应用层和领域层解耦，意味着用户接口层可以独立开发，不必等待后台系统的完成，亦不受后台系统重构的影响，在需求调研阶段系统原型出来并得到用户确认之后，就可以开始用户接口层的开发了。可以根据界面原型定义用户接口层需要的数据结构，该数据结构与底层数据结构解耦，不需要知道底层数据类型和数据之间的关联关系。将底层数据和界面数据连接起来并相互转换是门面层实现类的职责，这方面工作可以等待前后台系统分别完成之后进行。</p>
-<ul>
-<li>使得分布式部署成为可能。</li>
-</ul>
-<p>如果没有门面层的隔离，用户接口层只能直接使用领域层的领域对象作为自己的数据展现结构。这样我们就不能将系统进行分布式部署，将用户接口层和后台系统（领域层、应用层等）分别部署到不同的服务器上。因为在JPA和Hibernate等技术实现中，领域实体绑定到当前服务器的持久化上下文中，必须脱管之后才能够跨越JVM进行传输。更大的问题是事务问题，事务要跨越服务器的边界，复杂性增加，性能严重下降。门面层的存在使得实体和事务都限制在后台系统，不需要扩展到前台服务器。</p>
-<ul>
-<li>避免Hibernate中“会话已关闭”的问题，消除成本巨大的“Open Session in View”模式的需要。</li>
-</ul>
-<p>在采用JPA或Hibernate作为持久化手段的系统中存在臭名昭著的“会话已关闭”问题，对付这一问题的主要手段是Open Session in View这一存在潜在性能问题的方案。如果不采用门面层隔离后台数据结构，在前端展现数据需要访问实体的延迟初始化属性时就会遇到“会话已关闭”问题，而采用Open Session in View模式处理这个问题就意味着事务不是在后端完成而是扩展到前端用户接口层，在大访问量的网站上会遭遇严重的性能问题并降低吞吐量。采用门面模式的话，有关联关系的数据在后台拼装完毕再一次性返回给前端，事务局限在后端范围，不再有“会话已关闭”和性能问题。</p>
-<p>门面层说明：</p>
-<ul>
-<li>门面层特定于用户接口层，由用户接口层定义和控制（包括操作和数据的形式和内容），这意味着需要为不同类型的用户接口层开发专门的门面层。</li>
-<li>查询结果通常以数据传输对象（DTO）的形式表示。DTO的结构由用户接口层而不是后端决定，代表前端需要的数据形式，与底层数据结构脱耦。一个DTO对象往往由来自领域层中多个相关实体类的数据聚合而成。</li>
-<li>通过门面层实现类访问后端的应用层。实现类将后端数据拼装为DTO并返回给前端，它可以将数据装配职责委托给专门的Assembler工具类去执行。</li>
-<li>在分布式系统中，可以在前端和后端分别部署门面层。前后端的门面层接口相同，但后端的门面层实现类负责数据装配和发布，前端的门面层实现类负责通过某种通信机制（Web Service等）与后端门面层通讯，获取后者装配好的数据。传输过程中DTO可能序列化为JSON或XML等形式。</li>
-</ul>
-<h3 id="综合说明"><a href="#综合说明" class="headerlink" title="综合说明"></a>综合说明</h3><ul>
-<li>在四层架构中，领域层和应用层纯粹表达业务意图和机制，不包含任何技术逻辑；而基础设施层和用户接口层纯粹提供技术实现，不包含任何业务逻辑。在业务和技术之间存在清晰的关注点分离。</li>
-<li>应用层定义系统的全部业务功能，领域层具体实现这些功能。领域层“动于内”，应用层“形诸外”。</li>
-<li>应用层和领域层合在一起代表了整个业务系统，具备概念上的完整性（包含了全部领域概念，实现了全部的业务行为），但不具备实现上的完整性（没有基础设施层的技术支持，系统不具备可运行性；没有用户接口层支持，系统不具备可访问性）。</li>
-<li>所有业务逻辑都在领域层实现，业务逻辑泄漏到应用层是一个错误，泄露到基础设施层或用户接口层是严重错误（在用户接口层中实现业务逻辑是采用CRUD模式的常犯的典型错误）。</li>
-<li>领域层在履行职责的过程中如果需要技术支持，则在领域层中定义一个表达业务意图的领域服务接口，交由基础设施层采用各种具体技术去实现这一接口。保证领域层（和应用层）不被各种具体技术污染是逻辑分层的第一要务。</li>
-<li>判断业务层（领域层和应用层）是否被具体技术污染一个方便的方式是检查它们是否有对具体技术框架（例如Spring和Hibernate）的编译时依赖。业务层代码应该只依赖于JDK（java.*）、Java规范（javax.*），以及一些被广泛使用的类库如commons-lang、Guava、SLF4J、JodaTime等，这些类库本质上可视为对JDK的补充，不是一种具体技术框架。</li>
-<li>应用层和门面层的区别：应用层属于后端，门面层属于前端。应用层方法的参数和返回值可以包含领域对象，门面层方法的参数通常是字符串和数字等简单值，返回值是简单值或DTO。以转账操作为例子，应用层中的方法签名是这样的：void transferFund(Account from, Account to, Money amount, Date transferTime)，门面层中的方法签名是这样的：void transferFund(String fromAccountNumber, String toAccountNumber, BigDecimal amount, String currency, Date transferTime)。在门面层的实现类中，负责根据账户号码从仓储中获取Account对象，将amount和currency拼装成Money对象，然后以这些对象和transferTime为参数访问应用层中的相应方法。</li>
-<li>领域层中的领域对象具有领域通用性或行业通用性，意味着可以在基本相同的领域层上建立不同的应用层（就像三极管、二极管、电容、电阻等在电子工业领域具有通用性，可以用来组装收音机、录音机、电视机等不同应用），应用层是应用特定或客户特定的，只为特定的应用或客户定制。相比应用层，领域层对象具备高度的可重用性。例如一套完备的用户管理领域层模块可以被OA、ERP、CRM、HRM、MES等多个应用重用。因为领域对象中封装了业务逻辑，这种重用是非常有价值的。</li>
-<li>可以基于相同的应用层建立不同的用户接口层，例如Web页面，手机App、BI报表、RESTful Web Service等等。</li>
-</ul>
-<h2 id="各层间的调用关系与依赖关系"><a href="#各层间的调用关系与依赖关系" class="headerlink" title="各层间的调用关系与依赖关系"></a>各层间的调用关系与依赖关系</h2><p>各层在运行时<strong>对象</strong>调用关系如下图所示：</p>
-<img src="/2015/12/31/DDD-and-Layered-Architecture/layered-call.jpg" alt="各逻辑层的运行时对象调用关系" title="各逻辑层的运行时对象调用关系">
-<p>各层在编译时的<strong>类</strong>依赖关系如下图所示：</p>
-<img src="/2015/12/31/DDD-and-Layered-Architecture/layered-dependency.jpg" alt="各逻辑层的编译时类依赖关系" title="各逻辑层的编译时类依赖关系">
-<p>图中infrastructure是基础设施层，domain是领域层，application是应用层，facade和facade-impl是门面层（前者是门面接口层，后者是门面实现层），webapp是用户接口层（采用web形式）。</p>
-<p>这里有几个关键点：</p>
-<ul>
-<li>基础设施层和其他各层的编译时依赖关系和运行时调用关系是相反的：在运行时，其他各层中的对象调用基础设施层中的对象实例，使用后者提供的服务；而在编译时，基础设施层中的类依赖于其他各层（主要是领域层）中的类。这是通过运用面向对象原则中的依赖倒置原则达到的，在领域层中定义服务接口，而在基础设施层中实现领域层定义的接口。在运行时，通过Spring等IoC容器向领域层中服务接口的客户类注入基础设施层中定义的实现类的实例。依赖倒置原则保证了领域层是主，基础设施层是仆。正如同建筑工程建设中的甲方和乙方，虽然甲方使用乙方提供的产品和服务，但乙方要完成的内容是由甲方指定和控制的，是乙方依赖于甲方，而不是甲方依赖于乙方。</li>
-<li>代表业务的层（领域层和应用层）不依赖于代表技术的层（基础设施层和用户接口层），代表技术的层依赖于代表业务的层。这是天经地义的——业务提出需求，技术实现业务提出的需求。在保持业务层不变的前提下，可以变更技术层，实现可替换性——例如原来的基础设施层采用MyBatis实现持久化，可以自由替换为用JPA实现持久化；又例如原来的用户接口层基于Swing，可以自由替换为Web界面——在两种情况下，都不需要修改业务层。</li>
-<li>领域层处于整个系统的核心位置，它在概念上不依赖于其他各层，其他各层都直接或间接依赖于它。领域层是整个系统的核心引擎，直接实现业务目标，攸关业务正确性、可靠性、灵活性和扩展性。应该把最优秀的人才和最大部分的精力放在领域建模和领域层开发上，这才是真正的“领域驱动设计”。</li>
-<li>领域层应该是整个系统中最“胖”的一层，因为它实现了全部业务逻辑并且通过各种校验手段保证业务正确性，其余各层相对都较“瘦”。如果你的代码中不是如此，你肯定走错了路。胖用户接口层是“以数据库为中心的增删改查”模式的典型症状，胖应用层是事务脚本模式的典型症状。</li>
-<li>通过定义门面接口（图中的facade），前端和后端概念上互相独立，互不依赖，可以并行开发实现。等到前后端系统都开发完毕，再开发门面实现（图中的facade-impl），将前端和后端系统粘合起来，成为一体。门面层接口的任务是“分”：将前台和后台在概念上分隔开来；门面层实现类的任务是“合”，将前台和后台粘合在一起，成为一个有机统一的完整系统。</li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/31/Big-Picture-of-Software-Development/" itemprop="url">
-                  软件开发大图景：两个维度，四个象限
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-31T15:47:19+08:00" content="2015-12-31">
-              2015-12-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/分析设计/" itemprop="url" rel="index">
-                    <span itemprop="name">-分析设计</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/31/Big-Picture-of-Software-Development/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/31/Big-Picture-of-Software-Development/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>软件开发，尤其是大型软件开发是非常复杂的，涉及非常多的组件元素，需要作出大大小小的各种决策。软件开发的根本矛盾是不断增长的系统规模和复杂性与开发人员有限的大脑容量和处理速度之间的矛盾。:)</p>
-<p>为了了解软件开发的全貌，让我们上升到3万米的高空，对软件开发内容做一个全景式的鸟瞰，对我们要了解和实现的东西进行一个高层的切分。</p>
-<h2 id="两个维度"><a href="#两个维度" class="headerlink" title="两个维度"></a>两个维度</h2><h3 id="范围维度"><a href="#范围维度" class="headerlink" title="范围维度"></a>范围维度</h3><p>软件开发的主要目的是为其他行业的业务问题提供技术解决方案，例如为航空公司的飞机实现自动导航，为汽车公司的汽车生产进行产销平衡，等等。从范围上看，软件开发所覆盖的范围可以划分为两个领域：我们要开发的软件系统属于解决方案域，而软件系统来自于和最终服务于的业务领域（例如飞机导航、汽车生产等等）属于问题域。问题域存在问题，软件系统为问题域的问题提供技术上的解决方案。</p>
-<p>这就是我们看待软件开发的第一个维度：范围维度。我们把软件开发的范围划分为问题域和解决方案域。处于问题域中的时候，我们的任务是认识世界，即了解在没有软件系统存在的情况下，现实业务领域是如何运作的；而处于解决方案域中的时候，我们是在改造世界，即通过设计和实现软件系统帮助业务领域运作得更好（更大、更快、更赚钱、更省钱、更透明、更灵活……）。</p>
-<p>在软件开发的术语中，“业务”、“领域”是问题域的同义词，“系统”是解决方案域的同义词（“系统”是“软件系统”的简称）。因此，“业务”分析师、”业务”规则、“业务”用例模型、“领域”模型、“领域”专家聚焦于问题域，而“系统”分析师、“系统”用例模型聚焦于解决方案域。</p>
-<h3 id="内-外维度"><a href="#内-外维度" class="headerlink" title="内/外维度"></a>内/外维度</h3><p>除了范围维度之外，我们还可以从另外的维度看待软件开发，其中一个非常有用的维度是内/外维度。从内/外视角看，系统在我们面前可以划分为外部视图和内部视图。外部视图是系统的黑盒视图，我们看不到它的内部组成和运作机制，只能够看到它呈现给外界的功能；而内部视图是系统的白盒视图，揭示了系统的内部组成和运作机制。</p>
-<h2 id="四个象限"><a href="#四个象限" class="headerlink" title="四个象限"></a>四个象限</h2><p>范围维度和内外维度两者是正交的，你可以把它们看成两条相互垂直相交的数轴——X轴和Y轴，它们把软件开发问题空间分割为四个区域——用数学的术语表示就是四个象限。分别说明如下：</p>
-<h3 id="问题域的外部视图——业务用例模型"><a href="#问题域的外部视图——业务用例模型" class="headerlink" title="问题域的外部视图——业务用例模型"></a>问题域的外部视图——业务用例模型</h3><p>这个象限从外部视角看待问题域，分析探究业务系统实现了哪些功能，对它的用户提供了哪些业务价值？每一项系统功能体现为一个业务用例。例如银行储蓄业务为储户提供存款、取款、转账和提供对账单等等服务，每一项服务就是一个业务用例。</p>
-<p>开发业务用例模型不是软件开发的必须步骤，但本人强烈建议不要忽略这一方面的工作。一方面，开发软件系统的目标就是实现和改进这些业务用例（或业务用例中的某些环节），业务用例为软件开发设定了目标和验收标准；另一方面，通过业务用例分析可以更有效地支持领域建模和系统用例建模，有助于发现领域对象和机制，防止系统用例遗漏或疏失。</p>
-<h3 id="问题域的内部视图——领域模型"><a href="#问题域的内部视图——领域模型" class="headerlink" title="问题域的内部视图——领域模型"></a>问题域的内部视图——领域模型</h3><p>这个象限从内部视角看待问题域，研究业务领域中固有的组成、结构、行为、机制和规则等等。这方面的工作称为“领域建模”，其产物称为“领域模型”。我们要重点分析研究的是：业务领域中有哪些关键的概念实体（例如银行储蓄业务中的账户、对账单、信用卡、借记卡等等）、各种概念实体之间的关系（关联、泛化、组合、聚合等等），以及它们之间如何交互以实现业务用例模型中规定的各项功能等等。</p>
-<p>领域建模是软件开发中最核心的活动，领域模型是软件开发中最有价值的工件。领域建模的质量在很大程度上决定了软件的成败。如果由于对问题域分析理解的偏差，产出错误的领域模型，那么，无论多么先进的技术工具、多么高超的技术手段，都无法挽救软件的失败命运。</p>
-<h3 id="解决方案域的外部视图——系统用例模型"><a href="#解决方案域的外部视图——系统用例模型" class="headerlink" title="解决方案域的外部视图——系统用例模型"></a>解决方案域的外部视图——系统用例模型</h3><p>这个象限从外部视角看待要构建的软件系统，定义了系统所要实现的所有业务功能，即软件系统能够向它的用户提供的业务价值。这方面的工作称为需求分析（通常只包含功能需求），其产物称为“系统用例模型”，简称为“用例模型”（另一个名字是“功能规格说明书”），每一个系统用例描述一项对用户有价值的系统功能。</p>
-<p>系统用例模型定义了软件系统的功能外观，即软件系统能够“干什么”的方面。系统用例模型沟通了两个领域，它定义了要开发的软件系统（解决方案域）必须实现的业务功能（问题域）。</p>
-<h3 id="解决方案域的内部视图——设计模型"><a href="#解决方案域的内部视图——设计模型" class="headerlink" title="解决方案域的内部视图——设计模型"></a>解决方案域的内部视图——设计模型</h3><p>这个象限从内部视角看待要构建的软件系统，即通过哪些技术组件和怎样的交互手段实现系统用例模型中定义的业务功能？</p>
-<p>领域模型中的对象代表问题域中的概念（如信用卡、账户等等），而设计模型中的对象代表软件实体（如记录集、DAO等等）。正如同业务用例模型会映射到系统用例模型一样（通常一个系统用例实现一个业务用例，或者业务用例中的一个步骤），领域模型中的对象也可以而且应该映射到设计模型中的相应软件对象之上，这意味着设计模型中也应该有信用卡、账户这样的对象，它们和领域模型中的同名对象一样，拥有相同或类似的属性和行为，这就是《领域驱动设计》一书的主张——使用同一种语言（业务语言）和基于同一个模型（领域模型）进行分析和设计，开发软件应用。</p>
-<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>解决方案域以问题域为出发点和依归，即问题决定解决方案（这是理所当然的，不是吗？如果我想求解3乘2这个问题，你却提供3加2这个解决方案，当然是错误的）。开发人员的一个典型的错误是把关注点集中在解决方案域的实现技术上，却忽视了问题分析和问题定义，因此在实现过程中失焦，刻鹄成鹜，画虎类犬。</p>
-<p>内部视图“动于内”，外部视图“形诸外”。系统的外部视图定义了外部可见的行为，而内部视图揭示了系统内部的组织结构和运行机制，系统通过内部视图中的结构和机制实现外部视图中向外界呈现的行为。外部视图表达What，即“做什么”，内部视图表达How，即“怎么做”。</p>
-<p>设计模型从两方面获得指导：从系统用例模型中获得“What”方面的指导，确定需要实现哪些功能；以及从领域模型中获得“How”方面的指导，确定如何实现那些功能。在分层架构中，用例模型和领域模型分别映射到系统的应用层和领域层；在Clean架构（Robert C. Martin，<a href="http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external">Clean架构</a>）中，用例模型和领域模型分别映射到系统的用例层和实体层。</p>
-<h2 id="时刻记住你当前所处的位置"><a href="#时刻记住你当前所处的位置" class="headerlink" title="时刻记住你当前所处的位置"></a>时刻记住你当前所处的位置</h2><p>在软件开发过程中，请时刻记住你当前处于哪一个象限。我们应该严格划分业务（问题域）和技术（解决方案域），意图（外部视角）和实现（内部视角），要防止业务逻辑渗漏到技术组件中（例如在表示层或持久层中维护取款业务规则），也要防止技术逻辑渗漏到业务逻辑中（例如领域层代码依赖Spring或Hibernate，或使用RabbitMQ进行消息通信），还要防止在只应该表示意图的地方直接提供实现方案（例如在应用层中实现业务逻辑）。</p>
-<p>当处于问题域中的时候，我们的任务是“发现”，是“认识世界”；当处于解决方案域的时候，我们的任务是“发明”，是“改造世界”。当处于外部视图中的时候，我们是在描述系统的行为和功能；当处于内部视图中的时候，我们是在描述系统的内部组成、结构和实现机制。具体来说：</p>
-<ul>
-<li>在业务用例模型中，我们识别和建模业务意图和业务行为；</li>
-<li>在领域模型中，我们识别和建模业务实体和业务实现机制；</li>
-<li>在系统用例模型中，我们定义待开发的软件系统要实现的行为和功能；</li>
-<li>在设计模型中，我们定义待开发的软件系统的内部结构和行为实现机制。</li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
         </div>
@@ -820,21 +1343,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
