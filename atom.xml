@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yyang.io/"/>
-  <updated>2016-09-28T03:35:23.000Z</updated>
+  <updated>2016-09-28T03:39:17.000Z</updated>
   <id>http://www.yyang.io/</id>
   
   <author>
@@ -20,10 +20,12 @@
     <link href="http://www.yyang.io/2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/"/>
     <id>http://www.yyang.io/2016/09/28/Domain-modeling-of-organisation-structure-0-Introduction/</id>
     <published>2016-09-28T01:44:05.000Z</published>
-    <updated>2016-09-28T03:35:23.000Z</updated>
+    <updated>2016-09-28T03:39:17.000Z</updated>
     
-    <content type="html"><![CDATA[<p>我认为对于软件开发来说，领域建模是最重要的活动，领域模型是最重要的产物。领域模型反映了软件所要服务的现实业务领域的本质，体现了我们对业务领域的认识、理解和洞见。</p>
+    <content type="html"><![CDATA[<p>对于软件开发来说，领域建模是最重要的活动，领域模型是最重要的产物。领域模型反映了软件所要服务的现实业务领域的本质，体现了我们对业务领域的认识、理解和洞见。</p>
 <p>领域模型应该是一切领域开发活动的出发点和依归。</p>
+<p>本系列文章以组织结构的领域建模为例，演示领域建模的方法和技巧。</p>
+<a id="more"></a>
 <h2 id="领域模型的重要性"><a href="#领域模型的重要性" class="headerlink" title="领域模型的重要性"></a>领域模型的重要性</h2><p>领域模型的重要性体现在：</p>
 <ol>
 <li><p><strong>领域模型的正确性决定了软件在业务上的正确性。</strong></p>
@@ -54,9 +56,9 @@
     
     <summary type="html">
     
-      &lt;p&gt;我认为对于软件开发来说，领域建模是最重要的活动，领域模型是最重要的产物。领域模型反映了软件所要服务的现实业务领域的本质，体现了我们对业务领域的认识、理解和洞见。&lt;/p&gt;
+      &lt;p&gt;对于软件开发来说，领域建模是最重要的活动，领域模型是最重要的产物。领域模型反映了软件所要服务的现实业务领域的本质，体现了我们对业务领域的认识、理解和洞见。&lt;/p&gt;
 &lt;p&gt;领域模型应该是一切领域开发活动的出发点和依归。&lt;/p&gt;
-&lt;h2 id=&quot;领域模型的重要性&quot;&gt;&lt;a 
+&lt;p&gt;本系列文章以组织结构的领域建模为例，演示领域建模的方法和技巧。&lt;/p&gt;
     
     </summary>
     
@@ -893,11 +895,11 @@
       <category term="分析设计" scheme="http://www.yyang.io/categories/OOAD/"/>
     
     
+      <category term="OOAD" scheme="http://www.yyang.io/tags/OOAD/"/>
+    
       <category term="DDD" scheme="http://www.yyang.io/tags/DDD/"/>
     
       <category term="架构" scheme="http://www.yyang.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-      <category term="OOAD" scheme="http://www.yyang.io/tags/OOAD/"/>
     
   </entry>
   
